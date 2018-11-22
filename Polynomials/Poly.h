@@ -16,7 +16,7 @@
 //Used to store data on Polynomials
 typedef struct {
   int Order_of_polynomial; //Amount of coefficients
-  int Coefficient_Array;   //Array for coefficients
+  int Coefficient_Array[];  //Array for coefficients
 } Polynomial;
 
 // //Coefficients Data Type
@@ -27,6 +27,6 @@ typedef struct {
 // } Coefficients;
 
 //Declaring Functions
-Polynomial make_polynomial(int n);
+Polynomial* make_polynomial(int n);
 
 #endif

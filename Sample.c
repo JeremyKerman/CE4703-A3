@@ -4,8 +4,9 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "Polynomials/Poly.h"
 
 int main() {
-  printf("This is a test please ignore.\n");
+  make_polynomial(5);
   return 0;
 }

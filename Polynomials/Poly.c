@@ -5,7 +5,7 @@
 //////////////////////////////////////////////////
 
 //include system headers
-#include <stdin.h>
+#include <stdlib.h>
 #include <stdio.h>
 //include custom headers
 #include "Poly.h"
@@ -25,9 +25,9 @@
 //////////////////////////////////////////////////////
 
 Polynomial* make_polynomial(int n) {
-    Polynomial* p = malloc(sizeof(coefficients)+n)*sizeof(int*));
+    Polynomial* p = malloc((sizeof(Polynomial)+n*sizeof(int*)));
     if (!p) { perror("malloc make_polynomial"); exit(EXIT_FAILURE);};
-    p->No_of_coefficients = n;
+    p->Order_of_polynomial = n;
     for (int i=0; i<n; i++) p->Coefficient_Array[i] = NULL;
     return p;
 }
