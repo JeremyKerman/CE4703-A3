@@ -12,6 +12,7 @@
 
 //Declare macros
 
+
 //Functions
 
 ////////////////////////////////////////////////////
@@ -23,7 +24,6 @@
 //
 // Returns:    Polynomial p of order n
 //////////////////////////////////////////////////////
-
 Polynomial* make_polynomial(int n) {
     Polynomial* p = malloc((sizeof(Polynomial)+n*sizeof(int*)));
     if (!p) { perror("malloc make_polynomial"); exit(EXIT_FAILURE);};
