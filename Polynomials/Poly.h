@@ -12,8 +12,8 @@
 
 //Custom data types
 typedef struct {
-
-
+  int No_of_coefficients;
+  int* coefficients[];
 } Polynomial;
 
 
