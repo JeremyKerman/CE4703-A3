@@ -11,5 +11,7 @@ int main() {
   poly->Coefficient_Array[0] = 5;
 
   printf("if this number -> %d <- is five it means it works!<\n", poly->Coefficient_Array[0]);
+  del_polynomial(poly);
+  printf("if this number -> %d <- is five it means it works!<\n", NULL);
   return 0;
 }

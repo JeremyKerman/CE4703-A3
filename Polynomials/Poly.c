@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////
-//
+//  comments comments comments
 //  C file for Polynomials module
-//
+//  comments comments comments
 //////////////////////////////////////////////////
 
 //include system headers
@@ -30,4 +30,17 @@ Polynomial* make_polynomial(int n) {
     p->Order_of_polynomial = n;
     for (int i=0; i<n; i++) p->Coefficient_Array[i] = NULL;
     return p;
+}
+
+////////////////////////////////////////////////////
+// Polynomial del_polynomial(p)
+// A function to delete a polynomial by freeing the
+// memory allocated to it
+//
+// Parameters: Polynomial p
+//
+// Returns:    void
+//////////////////////////////////////////////////////
+void del_polynomial(Polynomial* p) {
+  free(p);
 }
