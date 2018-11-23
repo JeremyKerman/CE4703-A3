@@ -10,15 +10,15 @@ all: cleanModules run cleanMain
 
 #command to run the executable after its compiled
 run: Sample
-	./Sample
+	@./Sample
 
 #main file 
 Sample: Poly.o Sample.c
-	$(CC) -Wall -ggdb -o $@ $^
+	@$(CC) -Wall -ggdb -o $@ $^
 
 #module twoD
 Poly.o: Poly.c Poly.h
-	gcc -Wall -ggdb -c $<
+	@gcc -Wall -ggdb -c $<
 
 #clean command "-f" to ignore messages when files don't exist
 # using "@" to surpress the command being written out

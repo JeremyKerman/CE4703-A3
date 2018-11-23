@@ -25,15 +25,15 @@
 // Returns:    Polynomial p of order n
 //////////////////////////////////////////////////////
 Polynomial* make_polynomial(int n) {
-    Polynomial* p = malloc((sizeof(Polynomial)+n*sizeof(int*)));
+    Polynomial* p = malloc((sizeof(Polynomial)+n*sizeof(double*)));
     if (!p) { perror("malloc make_polynomial"); exit(EXIT_FAILURE);};
-    p->Order_of_polynomial = n;
-    for (int i=0; i<n; i++) p->Coefficient_Array[i] = NULL;
+    p->Order = n;
+    for (int i=0; i<n; i++) p->Coefficient[i] =  0.0;
     return p;
 }
 
 ////////////////////////////////////////////////////
-// Polynomial del_polynomial(p)
+// void del_polynomial(p)
 // A function to delete a polynomial by freeing the
 // memory allocated to it
 //
@@ -43,4 +43,53 @@ Polynomial* make_polynomial(int n) {
 //////////////////////////////////////////////////////
 void del_polynomial(Polynomial* p) {
   free(p);
+}
+
+////////////////////////////////////////////////////
+// Polynomial add_polynomials(p1, p2)
+// A function to add two polynomials together
+//
+// Parameters: Polynomial p1 - first polynomial
+//             Polynomial p2 - second polynomial
+//
+// Returns:    Polynomial sum of p1 & p2
+//////////////////////////////////////////////////////
+Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2) {
+  int highest_order = MAX(p1->Order, p2->Order);
+  Polynomial* p3 = make_polynomial(MAX(p1->Order, p2->Order));
+
+  for(int i=0; i<highest_order; i++) {
+      p3->Coefficient[i] = p1->Coefficient[i] + p2->Coefficient[i]; //if a coefficient is NULL
+  }                                                                 //it will be treated as 0
+  return p3;
+}
+
+////////////////////////////////////////////////////
+// void multiply_polynomial(p, d)
+// A function to multiply a Polynomial by a double
+//
+// Parameters: Polynomial p  - Polynomial to be multiplied
+//             double d      - number to multiply by
+//
+// Returns:    void
+//////////////////////////////////////////////////////
+void multiply_polynomial(Polynomial* p, double d) {
+  for(int i=0; i<p->Order; i++) {
+    p->Coefficient[i] *= d;
+  }
+}
+
+////////////////////////////////////////////////////
+// void divide_polynomial(p, d)
+// A function to divide a Polynomial by a double
+//
+// Parameters: Polynomial p  - Polynomial to be divided
+//             double d      - number to divide by
+//
+// Returns:    void
+//////////////////////////////////////////////////////
+void divide_polynomial(Polynomial* p, double d) {
+  for(int i=0; i<p->Order; i++) {
+    p->Coefficient[i] /= d;
+  }
 }
