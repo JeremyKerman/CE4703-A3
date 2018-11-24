@@ -93,3 +93,19 @@ void divide_polynomial(Polynomial* p, double d) {
     p->Coefficient[i] /= d;
   }
 }
+
+////////////////////////////////////////////////////
+// int get_order(p)
+// A function which returns the highest order of a polynomial
+//
+// Parameters: Polynomial p  - Polynomial
+//
+// Returns:    int - the highest order of the polynomial
+//////////////////////////////////////////////////////
+int get_order(Polynomial* p) {
+  for(int i=p->Order; i>=1; i--) {
+    if(p->Coefficient[i])
+      return i;
+  }
+  return 0;
+}
