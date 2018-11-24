@@ -27,6 +27,7 @@ void del_polynomial(Polynomial* p);
 Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2);
 void multiply_polynomial(Polynomial* p, double d);
 void divide_polynomial(Polynomial* p, double d);
+int get_order(Polynomial* p);
 
 //Include guard
 #endif

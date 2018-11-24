@@ -9,11 +9,11 @@ CC := gcc
 all: cleanModules run cleanMain 
 
 #command to run the executable after its compiled
-run: Sample
-	@./Sample
+run: Main
+	@./Main
 
 #main file 
-Sample: Poly.o Sample.c
+Main: Poly.o Main.c
 	@$(CC) -Wall -ggdb -o $@ $^
 
 #module twoD
@@ -23,7 +23,7 @@ Poly.o: Poly.c Poly.h
 #clean command "-f" to ignore messages when files don't exist
 # using "@" to surpress the command being written out
 cleanMain:
-	@-rm -f Sample *.o *~ *#
+	@-rm -f Main *.o *~ *#
 
 #command clean module folders to reduce
 #messages after the executable has finished
