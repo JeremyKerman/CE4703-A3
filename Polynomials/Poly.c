@@ -1,17 +1,16 @@
 //////////////////////////////////////////////////
+//
 //  comments comments comments
 //  C file for Polynomials module
 //  comments comments comments
-//////////////////////////////////////////////////
+//
+///////////////////////////////////////////////////
 
 //include system headers
 #include <stdlib.h>
 #include <stdio.h>
 //include custom headers
 #include "Poly.h"
-
-//Declare macros
-
 
 //Functions
 
