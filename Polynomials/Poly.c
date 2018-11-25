@@ -24,6 +24,7 @@
 // Returns:    Polynomial p of order n
 //////////////////////////////////////////////////////
 Polynomial* make_polynomial(int n) {
+    n++; // x^0 also counted
     Polynomial* p = malloc((sizeof(Polynomial)+n*sizeof(double*)));
     if (!p) { perror("malloc make_polynomial"); exit(EXIT_FAILURE);};
     p->Order = n;

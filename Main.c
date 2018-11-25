@@ -23,6 +23,8 @@
 //  and use the software functions
 ///////////////////////////////////////////////////////////
 int main() {
+  Polynomial* po = make_polynomial(6);
+  po->Coefficient[3] = 9;
   menu();
   return EXIT_SUCCESS;
 }
@@ -35,7 +37,27 @@ void clrscr() {
   system("@cls||clear");
 }
 
+void print_polynomial(Polynomial* p) {
+  int order = get_order(p);
+
+  fprintf(stdout, "\nPolynomial = ");
+  if(p->Coefficient[0])
+    fprintf(stdout, "%g + ", p->Coefficient[0]);
+
+  for(int i=1; i<order; i++) {
+    if(p->Coefficient[i])
+      fprintf(stdout, "%gx^%i + ", p->Coefficient[i], i);
+  }
+  if(p->Coefficient[order]) {
+    fprintf(stdout, "%gx^%i\n", p->Coefficient[order], order);
+  } else {
+    fprintf(stdout, "\n");
+  }
+}
+
 void menu() {
+  Polynomial* po = make_polynomial(6);
+  po->Coefficient[3] = 12;
   int option;
   clrscr();
   fprintf(stdout, "\n\tWhat would you like to do?");
@@ -50,7 +72,7 @@ void menu() {
   scanf("%d", &option);
 
   switch(option) {
-    case 1:
+    case 1: print_polynomial(po);
     case 2:
     case 3:
     case 4:
