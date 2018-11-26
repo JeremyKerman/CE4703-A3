@@ -3,7 +3,9 @@
 // Polynomial function manipulator with user input
 //
 // Date: 22.11.2018
-// Authors: Dominik Przychodni - 17204658
+// Author:  Dominik Przychodni - 17204658
+//
+// Useless fucks:
 //          Matas Mockus       - G4Y80Y
 //          Eoghan McGrath     - 1DKL0L
 //          Brian McSweeney    - WITHAY
@@ -23,8 +25,7 @@
 //  and use the software functions
 ///////////////////////////////////////////////////////////
 int main() {
-  Polynomial* po = make_polynomial(6);
-  po->Coefficient[3] = 9;
+
   menu();
   return EXIT_SUCCESS;
 }
@@ -57,6 +58,9 @@ void print_polynomial(Polynomial* p) {
 
 void menu() {
   Polynomial* po = make_polynomial(6);
+  po->Coefficient[1] = 2;
+  po->Coefficient[3] = 6;
+  po->Coefficient[6] = 3;
   po->Coefficient[3] = 12;
   int option;
   clrscr();
@@ -66,13 +70,14 @@ void menu() {
   fprintf(stdout, "\n\t[3] Add polynomials");
   fprintf(stdout, "\n\t[4] Multiply a polynomial by a scalar");
   fprintf(stdout, "\n\t[5] Divide a polynomial by a scalar");
-  fprintf(stdout, "\n\t[6] Get the order of a polynomial");
-  fprintf(stdout, "\n\t[7] EXIT");
+  fprintf(stdout, "\n\t[6] Normalise a polynomial");
+  fprintf(stdout, "\n\t[7] Get the order of a polynomial");
+  fprintf(stdout, "\n\t[8] EXIT");
   fprintf(stdout, "\n\n\tSelection: ");
   scanf("%d", &option);
 
   switch(option) {
-    case 1: print_polynomial(po);
+    case 1: normalise(po);print_polynomial(po);
     case 2:
     case 3:
     case 4:

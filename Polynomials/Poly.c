@@ -109,3 +109,26 @@ int get_order(Polynomial* p) {
   }
   return 0;
 }
+
+////////////////////////////////////////////////////
+// int normalise(p)
+// A function which normalises a polynomial to make the
+// highest order coefficient a 1
+//
+// Parameters: Polynomial p  - Polynomial
+//////////////////////////////////////////////////////
+int normalise(Polynomial* p) {
+  int order = p->Order;
+  double divisor;
+  for (int j=order; j>=0; j--) {
+    if(p->Coefficient[j]) { //checking if divisor is 0
+      divisor = p->Coefficient[j];
+      for (int i=0; i<=order; i++) {
+        p->Coefficient[i] /= divisor;
+      }
+      return 1;
+    }
+  }
+  fprintf(stdout, "\nCan't normalise polynomial\n"); // no non-zero coefficient was found
+  return 0;
+}
