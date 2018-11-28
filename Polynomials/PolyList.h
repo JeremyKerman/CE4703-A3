@@ -7,6 +7,7 @@
 
 #ifndef PolyList_H
 #define PolyList_H
+#include "Poly.h"
 
 ///////////////////////////////////////////////////////
 // define error codes for double linked list
@@ -27,7 +28,7 @@ typedef enum {ok, illegalNode, noMemory} llError;
 
 typedef struct n {
   
-  Polynomial p; // store a polynomial in each node 
+  Polynomial *p; // store a pointer to a polynomial in each node 
   struct n *after; // store pointer no node after this one 
   struct n *before; // store pointer to node before this one
   
@@ -52,8 +53,8 @@ typedef struct {
 
 llist *listCreate();
 void listDelete(llist *list);
-data *accessData(llist *list);
-llError insertAfter(data *d, llist *list);
+Polynomial *accessPoly(llist *list);
+llError insertAfter(Polynomial *p, llist *list);
 llError deleteCurrent(llist *list);
 void gotoHead(llist *list);
 llError gotoNextNode(llist *list);
