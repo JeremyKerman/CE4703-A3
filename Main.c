@@ -69,8 +69,8 @@ void menu()
   int option;
   clrscr();
   fprintf(stdout, "\n\tWhat would you like to do?");
-  fprintf(stdout, "\n\t[1] Make a new polynomial");
   fprintf(stdout, "\n\t[2] Delete a Polynomial");
+  fprintf(stdout, "\n\t[1] Make a new polynomial");
   fprintf(stdout, "\n\t[3] Add polynomials");
   fprintf(stdout, "\n\t[4] Multiply a polynomial by a scalar");
   fprintf(stdout, "\n\t[5] Divide a polynomial by a scalar");
@@ -81,13 +81,14 @@ void menu()
   scanf("%d", &option);
 
   switch(option) {
-    case 1: normalise(po);print_polynomial(po);
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6: break;
-    case 7: fprintf(stdout, "\n\tGoodbye.\n"); exit(0);
+    case 1: menu_new_polynomial(); break;
+    case 2: menu_delete_polynomial(); break;
+    case 3: menu_add_polynomials(); break;
+    case 4: menu_multiply_polynomial(); break;
+    case 5: menu_divide_polynomial(); break;
+    case 6: menu_normalise_polynomial(); break;
+    case 7: menu_get_order(); break;
+    case 8: fprintf(stdout, "\n\tGoodbye.\n"); exit(0);
     default: break;
   }
 }
@@ -102,7 +103,154 @@ void menu()
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void make_new_polynomial()
+void menu_new_polynomial()
 {
+  //Clear the screen
+  clrscr();
+  int new_order;
+  //print the instructions
+  fprintf(stdout, "\n\tYou have chosen to make a new polynomial");
+  fprintf(stdout, "\n\nPlease enter the order of the polynomial");
+  scanf("%d", &new_order);
+
+  // rest of the code
+
+  //Go back to the menu
+  menu();
+
+}
+
+///////////////////////////////////////////////////////
+// void delete_polynomial();
+//
+// function call which deletes a given polynomial
+//
+// parameters: void
+// returns:    void
+//////////////////////////////////////////////////////////////
+
+void menu_delete_polynomial()
+{
+  //clear the screen
+  clrscr();
+
+  /* PRINT THE POLYNOMIALS AVAILABLE*/
+  /*DELETE THE CHOSEN POLYNOMIAL FROM THE HEAP*/
+
+  //Go back to the menu
+  menu();
+
+}
+
+///////////////////////////////////////////////////////
+// void add_polynomials();
+//
+// function call which adds two polynomials and stores the
+// sum as a new polynomial
+//
+// parameters: void
+// returns:    void
+//////////////////////////////////////////////////////////////
+
+void menu_add_polynomials()
+{
+  //clear the screen
+  clrscr();
+
+  /* PRINT THE POLYNOMIALS AVAILABLE*/
+  /*ALLOW THE USER TO CHOSE THE POLYNOMIALS THEY WANT TO ADD*/
+
+  //Go back to the menu
+  menu();
+
+}
+
+///////////////////////////////////////////////////////
+// void menu_multiply_polynomial()
+//
+// function call which multiplies a polynomial by a scalar
+//
+// parameters: void
+// returns:    void
+//////////////////////////////////////////////////////////////
+
+void menu_multiply_polynomial()
+{
+  //clear the screen
+  clrscr();
+
+  /* PRINT THE POLYNOMIALS AVAILABLE*/
+  /*ALLOW THE USER TO CHOSE THE POLYNOMIAL AND
+    SCALAR THEY WANT TO MULYIPLY BY*/
+
+  //Go back to the menu
+  menu();
+
+}
+
+///////////////////////////////////////////////////////
+// void add_polynomials();
+//
+// function call which divides a polynomial bt a scalar
+//
+// parameters: void
+// returns:    void
+//////////////////////////////////////////////////////////////
+
+void menu_divide_polynomial()
+{
+  //clear the screen
+  clrscr();
+
+  /* PRINT THE POLYNOMIALS AVAILABLE*/
+  /*ALLOW THE USER TO CHOSE THE POLYNOMIAL AND
+    SCALAR THEY WANT TO DIVIDE BY*/
+
+  //Go back to the menu
+  menu();
+
+}
+
+///////////////////////////////////////////////////////
+// void menu_normalise_polynomial();
+//
+// function call which normalises a polynomial
+//
+// parameters: void
+// returns:    void
+//////////////////////////////////////////////////////////////
+
+void menu_normalise_polynomial()
+{
+  //clear the screen
+  clrscr();
+
+  /* PRINT THE POLYNOMIALS AVAILABLE*/
+  /*ALLOW THE USER TO CHOSE THE POLYNOMIAL THEY WANT TO NORMALISE*/
+
+  //Go back to the menu
+  menu();
+
+}
+
+///////////////////////////////////////////////////////
+// void menu_get_order();
+//
+// function call which prints the order of a polynomial
+//
+// parameters: void
+// returns:    void
+//////////////////////////////////////////////////////////////
+
+void menu_get_order();
+{
+  //clear the screen
+  clrscr();
+
+  /* PRINT THE POLYNOMIALS AVAILABLE*/
+  /*ALLOW THE USER TO CHOSE THE POLYNOMIAL THEY WANT TO GET THE ORDER OF*/
+
+  //Go back to the menu
+  menu();
 
 }
