@@ -3,12 +3,12 @@
 // Polynomial function manipulator with user input
 //
 // Date: 22.11.2018
-// Author:  Dominik Przychodni - 17204658
+// Authors:  Dominik Przychodni - 17204658
+//           Bryan McSweeney    - 17223962
 //
 // Useless fucks:
 //          Matas Mockus       - G4Y80Y
 //          Eoghan McGrath     - 1DKL0L
-//          Brian McSweeney    - WITHAY
 //          Jeremy Pili        - WEARSFAKEGLASSES
 ///////////////////////////////////////////////////////
 
@@ -17,6 +17,7 @@
 #include <stdio.h>
 //include custom headers
 #include "Polynomials/Poly.h"
+#include "Polynomials/PolyList.h"
 
 /////////////////////////////////////////////////////////
 //  Main Function
@@ -26,6 +27,7 @@
 ///////////////////////////////////////////////////////////
 int main()
 {
+  polyList = listCreate();  //creates list to store the polynomials
 
   menu();
   return EXIT_SUCCESS;
@@ -113,7 +115,22 @@ void menu_new_polynomial()
   fprintf(stdout, "\n\nPlease enter the order of the polynomial");
   scanf("%d", &new_order);
 
-  // rest of the code
+  Polynomial *p = make_polynomial(new_order);
+  
+  /////////////////////////////////////////////////////////////////////////////////
+  //add code here to request the coefficients and set them (p->coefficient[0] = )
+  ////////////////////////////////////////////////////////////////////////////////
+
+  if (polyList != NULL) {
+
+	// call insertAfter
+	if (insertAfter(p, polyList); == ok)
+	  printf("\nadded polynomial to list\n");
+	else 
+	  printf("\nInsuffient ressources, operation cancelled\n");
+      } else {
+	printf("list to store polynomials not created\n");  //just for debugging
+      }
 
   //Go back to the menu
   menu();
