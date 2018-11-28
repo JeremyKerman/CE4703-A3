@@ -24,7 +24,8 @@
 //  provides an interface for the user to input values
 //  and use the software functions
 ///////////////////////////////////////////////////////////
-int main() {
+int main()
+{
 
   menu();
   return EXIT_SUCCESS;
@@ -34,11 +35,13 @@ int main() {
 // function clrscr()
 // Clears the screen
 //////////////////////////////////////////////////////
-void clrscr() {
+void clrscr()
+{
   system("@cls||clear");
 }
 
-void print_polynomial(Polynomial* p) {
+void print_polynomial(Polynomial* p)
+{
   int order = get_order(p);
 
   fprintf(stdout, "\nPolynomial = ");
@@ -56,7 +59,8 @@ void print_polynomial(Polynomial* p) {
   }
 }
 
-void menu() {
+void menu()
+{
   Polynomial* po = make_polynomial(6);
   po->Coefficient[1] = 2;
   po->Coefficient[3] = 6;
@@ -86,4 +90,19 @@ void menu() {
     case 7: fprintf(stdout, "\n\tGoodbye.\n"); exit(0);
     default: break;
   }
+}
+
+///////////////////////////////////////////////////////
+// void make_new_polynomial();
+//
+// function call which allows the user to make a polynomial
+// and set custom coefficients
+//
+// parameters: void
+// returns:    void
+//////////////////////////////////////////////////////////////
+
+void make_new_polynomial()
+{
+
 }
