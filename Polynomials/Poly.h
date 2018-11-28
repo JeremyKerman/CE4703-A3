@@ -21,13 +21,16 @@ typedef struct {
   double Coefficient[]; //Array for coefficients
 } Polynomial;
 
-//Declaring Functions
+//Declaring Functions in Poly.c
 Polynomial* make_polynomial(int n);
 void del_polynomial(Polynomial* p);
 Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2);
 void multiply_polynomial(Polynomial* p, double d);
 void divide_polynomial(Polynomial* p, double d);
 int get_order(Polynomial* p);
+
+//Declaring Functions in PolyList.c
+
 
 //Include guard
 #endif
