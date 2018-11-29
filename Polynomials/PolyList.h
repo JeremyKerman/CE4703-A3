@@ -42,7 +42,7 @@ typedef struct {
   
   llnode *head; // head node
   llnode *current; // current node
-  int n; // number of nodes
+  int nodes; // number of nodes
   
 } llist;
 

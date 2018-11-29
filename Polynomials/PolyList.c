@@ -113,7 +113,7 @@ llError insertAfter(Polynomial *p, llist *list)
     list->current->after = newnode;
 
     // increment number of nodes by 1.
-    list->n++;
+    list->nodes++;
   }
   return returnvalue;
 }

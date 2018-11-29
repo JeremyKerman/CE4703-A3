@@ -28,8 +28,9 @@
 ///////////////////////////////////////////////////////////
 int main()
 {
-  llist *polyList = listCreate();  //creates list to store the polynomials
-
+  llist *polyList = listCreate();//creates list to store the polynomials
+  polyList->nodes = 0;
+  
   menu(polyList);
   return EXIT_SUCCESS;
 }
@@ -43,21 +44,24 @@ void clrscr()
   system("@cls||clear");
 }
 
-void print_polynomial(Polynomial *p)
+void print_polynomial(Polynomial *p, int node)
 {
   int order = get_order(p);
 
-  fprintf(stdout, "\nPolynomial = ");
+  fprintf(stdout, "\n\tPolynomial %d =  ",node);
   if(p->Coefficient[0])
     fprintf(stdout, "%g + ", p->Coefficient[0]);
 
   for(int i=1; i<order; i++) {
     if(p->Coefficient[i])
-      fprintf(stdout, "%gx^%i + ", p->Coefficient[i], i);
+      fprintf(stdout, "%gx^%i ", p->Coefficient[i], i);
   }
-  if(p->Coefficient[order]) {
-    fprintf(stdout, "%gx^%i\n", p->Coefficient[order], order);
-  } else {
+  int even = (int) p->Coefficient[order]%2;
+  
+  if(even != 0) {
+    fprintf(stdout, "+ %gx^%i\n", p->Coefficient[order], order);
+  }
+  else {
     fprintf(stdout, "\n");
   }
 }
@@ -126,10 +130,11 @@ void menu_new_polynomial(llist *polyList)
   if (polyList != NULL) {
 
 	// call insertAfter
-	if (insertAfter(p, polyList) == ok)
-	  printf("\nadded polynomial to list\n");
-	else
-	  printf("\nInsuffient ressources, operation cancelled\n");
+    polyList->current = polyList->head;
+    if (insertAfter(p, polyList) == ok)
+       printf("\nadded polynomial to list\n");
+    else
+       printf("\nInsuffient ressources, operation cancelled\n");
   }
   else {
 	printf("list to store polynomials not created\n");  //just for debugging
@@ -296,8 +301,10 @@ void menu_print(llist *polyList)
       fprintf(stdout,"\nNo Polynomials to show\n");
     }
     else{
+      int i = 1;
       do{
-	print_polynomial(accessPoly(polyList));
+	print_polynomial(accessPoly(polyList),i);
+	i++;
 	polyList->current = polyList->current->after;//   <----- fix this to use
       }while(polyList->current != NULL);             //           gotoNextNode()
       polyList->current = polyList->head->after;
