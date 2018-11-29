@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 //include custom headers
+#include "Main.h"
 #include "Polynomials/Poly.h"
 #include "Polynomials/PolyList.h"
 
@@ -27,9 +28,9 @@
 ///////////////////////////////////////////////////////////
 int main()
 {
-  polyList = listCreate();  //creates list to store the polynomials
+  llist *polyList = listCreate();  //creates list to store the polynomials
 
-  menu();
+  menu(polyList);
   return EXIT_SUCCESS;
 }
 
@@ -61,7 +62,7 @@ void print_polynomial(Polynomial* p)
   }
 }
 
-void menu()
+void menu(llist *polyList)
 {
   Polynomial* po = make_polynomial(6);
   po->Coefficient[1] = 2;
@@ -78,19 +79,21 @@ void menu()
   fprintf(stdout, "\n\t[5] Divide a polynomial by a scalar");
   fprintf(stdout, "\n\t[6] Normalise a polynomial");
   fprintf(stdout, "\n\t[7] Get the order of a polynomial");
-  fprintf(stdout, "\n\t[8] EXIT");                            
+  fprintf(stdout, "\n\t[8] Print all polynomials");
+  fprintf(stdout, "\n\t[9] EXIT");                            
   fprintf(stdout, "\n\n\tSelection: ");                       
   scanf("%d", &option);
 
   switch(option) {
-    case 1: menu_new_polynomial(); break;
-    case 2: menu_delete_polynomial(); break;
-    case 3: menu_add_polynomials(); break;
-    case 4: menu_multiply_polynomial(); break;
-    case 5: menu_divide_polynomial(); break;
-    case 6: menu_normalise_polynomial(); break;
-    case 7: menu_get_order(); break;
-    case 8: menu_exit();
+    case 1: menu_new_polynomial(polyList); break;
+    case 2: menu_delete_polynomial(polyList); break;
+    case 3: menu_add_polynomials(polyList); break;
+    case 4: menu_multiply_polynomial(polyList); break;
+    case 5: menu_divide_polynomial(polyList); break;
+    case 6: menu_normalise_polynomial(polyList); break;
+    case 7: menu_get_order(polyList); break;
+    case 8: menu_print(polyList); break;
+    case 9: menu_exit(polyList); break;
     default: break;
   }
 }
@@ -105,7 +108,7 @@ void menu()
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_new_polynomial()
+void menu_new_polynomial(llist *polyList)
 {
   //Clear the screen
   clrscr();
@@ -124,16 +127,17 @@ void menu_new_polynomial()
   if (polyList != NULL) {
 
 	// call insertAfter
-	if (insertAfter(p, polyList); == ok)
+	if (insertAfter(p, polyList) == ok)
 	  printf("\nadded polynomial to list\n");
 	else 
 	  printf("\nInsuffient ressources, operation cancelled\n");
-      } else {
+  }
+  else {
 	printf("list to store polynomials not created\n");  //just for debugging
-      }
+  }
 
   //Go back to the menu
-  menu();
+  menu(polyList);
 
 }
 
@@ -146,7 +150,7 @@ void menu_new_polynomial()
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_delete_polynomial()
+void menu_delete_polynomial(llist *polyList)
 {
   //clear the screen
   clrscr();
@@ -155,7 +159,7 @@ void menu_delete_polynomial()
   /*DELETE THE CHOSEN POLYNOMIAL FROM THE HEAP*/
 
   //Go back to the menu
-  menu();
+  menu(polyList);
 
 }
 
@@ -169,7 +173,7 @@ void menu_delete_polynomial()
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_add_polynomials()
+void menu_add_polynomials(llist *polyList)
 {
   //clear the screen
   clrscr();
@@ -178,7 +182,7 @@ void menu_add_polynomials()
   /*ALLOW THE USER TO CHOSE THE POLYNOMIALS THEY WANT TO ADD*/
 
   //Go back to the menu
-  menu();
+  menu(polyList);
 
 }
 
@@ -191,7 +195,7 @@ void menu_add_polynomials()
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_multiply_polynomial()
+void menu_multiply_polynomial(llist *polyList)
 {
   //clear the screen
   clrscr();
@@ -201,7 +205,7 @@ void menu_multiply_polynomial()
     SCALAR THEY WANT TO MULYIPLY BY*/
 
   //Go back to the menu
-  menu();
+  menu(polyList);
 
 }
 
@@ -214,7 +218,7 @@ void menu_multiply_polynomial()
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_divide_polynomial()
+void menu_divide_polynomial(llist *polyList)
 {
   //clear the screen
   clrscr();
@@ -224,7 +228,7 @@ void menu_divide_polynomial()
     SCALAR THEY WANT TO DIVIDE BY*/
 
   //Go back to the menu
-  menu();
+  menu(polyList);
 
 }
 
@@ -237,7 +241,7 @@ void menu_divide_polynomial()
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_normalise_polynomial()
+void menu_normalise_polynomial(llist *polyList)
 {
   //clear the screen
   clrscr();
@@ -246,7 +250,7 @@ void menu_normalise_polynomial()
   /*ALLOW THE USER TO CHOSE THE POLYNOMIAL THEY WANT TO NORMALISE*/
 
   //Go back to the menu
-  menu();
+  menu(polyList);
 
 }
 
@@ -259,7 +263,7 @@ void menu_normalise_polynomial()
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_get_order();
+void menu_get_order(llist *polyList)
 {
   //clear the screen
   clrscr();
@@ -268,10 +272,46 @@ void menu_get_order();
   /*ALLOW THE USER TO CHOSE THE POLYNOMIAL THEY WANT TO GET THE ORDER OF*/
 
   //Go back to the menu
-  menu();
+  menu(polyList);
 
 }
 
+
+
+///////////////////////////////////////////////////////
+// void menu_print();
+//
+// function to print all stored polynomials
+//
+// parameters: void
+// returns:    void
+//////////////////////////////////////////////////////////////
+
+void menu_print(llist *polyList)
+{
+  if (polyList != NULL) {
+
+    polyList->current = polyList->head->after;
+    
+    if (polyList->current == NULL){
+      fprintf(stdout,"\nNo Polynomials to show\n");
+    }
+    else{
+      while(polyList->current != NULL){
+	
+	print_polynomial(accessPoly(polyList));
+	gotoNextNode(polyList);
+	
+      }
+    }
+    
+  }
+  else {
+	printf("list to store polynomials not created\n");  //just for debugging
+  }
+
+  menu(polyList);
+}
 
 ///////////////////////////////////////////////////////
 // void menu_exit();
@@ -282,9 +322,9 @@ void menu_get_order();
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_exit();
+void menu_exit(llist *polyList)
 {
   listDelete(polyList);
-  fprintf(stdout,"\nGoodbye!\n")
+  fprintf(stdout,"\nGoodbye!\n");
   exit(0);
 }
