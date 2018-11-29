@@ -66,6 +66,7 @@ void listDelete(llist *list)
   // iterate through all nodes in list and delete them
   while (list->head->after != NULL) {
     next = list->head->after;
+    free(next->p);
     list->head->after = list->head->after->after;
     free(next);
   } 

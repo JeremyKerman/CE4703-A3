@@ -71,15 +71,15 @@ void menu()
   int option;
   clrscr();
   fprintf(stdout, "\n\tWhat would you like to do?");
-  fprintf(stdout, "\n\t[2] Delete a Polynomial");
   fprintf(stdout, "\n\t[1] Make a new polynomial");
+  fprintf(stdout, "\n\t[2] Delete a Polynomial");
   fprintf(stdout, "\n\t[3] Add polynomials");
   fprintf(stdout, "\n\t[4] Multiply a polynomial by a scalar");
   fprintf(stdout, "\n\t[5] Divide a polynomial by a scalar");
   fprintf(stdout, "\n\t[6] Normalise a polynomial");
   fprintf(stdout, "\n\t[7] Get the order of a polynomial");
-  fprintf(stdout, "\n\t[8] EXIT");
-  fprintf(stdout, "\n\n\tSelection: ");
+  fprintf(stdout, "\n\t[8] EXIT");                            
+  fprintf(stdout, "\n\n\tSelection: ");                       
   scanf("%d", &option);
 
   switch(option) {
@@ -90,7 +90,7 @@ void menu()
     case 5: menu_divide_polynomial(); break;
     case 6: menu_normalise_polynomial(); break;
     case 7: menu_get_order(); break;
-    case 8: fprintf(stdout, "\n\tGoodbye.\n"); exit(0);
+    case 8: menu_exit();
     default: break;
   }
 }
@@ -119,7 +119,7 @@ void menu_new_polynomial()
   
   /////////////////////////////////////////////////////////////////////////////////
   //add code here to request the coefficients and set them (p->coefficient[0] = )
-  ////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////
 
   if (polyList != NULL) {
 
@@ -270,4 +270,21 @@ void menu_get_order();
   //Go back to the menu
   menu();
 
+}
+
+
+///////////////////////////////////////////////////////
+// void menu_exit();
+//
+// function to delete the list and close the program.
+//
+// parameters: void
+// returns:    void
+//////////////////////////////////////////////////////////////
+
+void menu_exit();
+{
+  listDelete(polyList);
+  fprintf(stdout,"\nGoodbye!\n")
+  exit(0);
 }
