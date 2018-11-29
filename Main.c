@@ -297,12 +297,12 @@ void menu_print(llist *polyList)
       fprintf(stdout,"\nNo Polynomials to show\n");
     }
     else{
-      while(polyList->current != NULL){
+      do{
 	
 	print_polynomial(accessPoly(polyList));
 	gotoNextNode(polyList);
 	
-      }
+	}while(polyList->current->after != NULL);
     }
     
   }
