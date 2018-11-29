@@ -80,8 +80,8 @@ void menu(llist *polyList)
   fprintf(stdout, "\n\t[6] Normalise a polynomial");
   fprintf(stdout, "\n\t[7] Get the order of a polynomial");
   fprintf(stdout, "\n\t[8] Print all polynomials");
-  fprintf(stdout, "\n\t[9] EXIT");                            
-  fprintf(stdout, "\n\n\tSelection: ");                       
+  fprintf(stdout, "\n\t[9] EXIT");
+  fprintf(stdout, "\n\n\tSelection: ");
   scanf("%d", &option);
 
   switch(option) {
@@ -119,7 +119,6 @@ void menu_new_polynomial(llist *polyList)
   scanf("%d", &new_order);
 
   Polynomial *p = make_polynomial(new_order);
-<<<<<<< HEAD
 
   fprintf(stdout, "\n");
   for(int i=0; i<= new_order; i++)
@@ -127,19 +126,13 @@ void menu_new_polynomial(llist *polyList)
     fprintf(stdout, "Enter coefficient of x^%i: ", i);
     scanf("%d", &p->Coefficient[i]);
   }
-=======
-  
-  /////////////////////////////////////////////////////////////////////////////////
-  //add code here to request the coefficients and set them (p->coefficient[0] = )
-  /////////////////////////////////////////////////////////////////////////////////
->>>>>>> 2aa3c6ac340c37abac679232c4adba3fc5ab4650
 
   if (polyList != NULL) {
 
 	// call insertAfter
 	if (insertAfter(p, polyList) == ok)
 	  printf("\nadded polynomial to list\n");
-	else 
+	else
 	  printf("\nInsuffient ressources, operation cancelled\n");
   }
   else {
@@ -302,19 +295,28 @@ void menu_print(llist *polyList)
   if (polyList != NULL) {
 
     polyList->current = polyList->head->after;
-    
+
     if (polyList->current == NULL){
       fprintf(stdout,"\nNo Polynomials to show\n");
     }
     else{
+<<<<<<< HEAD
       do{
 	
 	print_polynomial(accessPoly(polyList));
 	gotoNextNode(polyList);
 	
       }while(polyList->current->after != NULL);
+=======
+      while(polyList->current != NULL){
+
+	print_polynomial(accessPoly(polyList));
+	gotoNextNode(polyList);
+
+      }
+>>>>>>> f2842442ccf38d72763f12ab75592927f2bbf9c9
     }
-    
+
   }
   else {
 	printf("list to store polynomials not created\n");  //just for debugging
