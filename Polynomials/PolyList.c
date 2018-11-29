@@ -212,11 +212,13 @@ llError gotoPrevNode(llist *list)
 Polynomial *accessPoly(llist *list)
 {
   // is current head or tail?
-  if (list->current != list->head && list->current != NULL) {
+  if ((list->current != list->head) && (list->current != NULL)) {
     // no, return data
-    return &(list->current->p);
-  } else {
+    return list->current->p;
+  }
+  else {
     // yes, return NULL
     return NULL;
+
   }
 }

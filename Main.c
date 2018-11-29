@@ -43,7 +43,7 @@ void clrscr()
   system("@cls||clear");
 }
 
-void print_polynomial(Polynomial* p)
+void print_polynomial(Polynomial *p)
 {
   int order = get_order(p);
 
@@ -64,13 +64,8 @@ void print_polynomial(Polynomial* p)
 
 void menu(llist *polyList)
 {
-  Polynomial* po = make_polynomial(6);
-  po->Coefficient[1] = 2;
-  po->Coefficient[3] = 6;
-  po->Coefficient[6] = 3;
-  po->Coefficient[3] = 12;
+  
   int option;
-  clrscr();
   fprintf(stdout, "\n\tWhat would you like to do?");
   fprintf(stdout, "\n\t[1] Make a new polynomial");
   fprintf(stdout, "\n\t[2] Delete a Polynomial");
@@ -83,6 +78,7 @@ void menu(llist *polyList)
   fprintf(stdout, "\n\t[9] EXIT");
   fprintf(stdout, "\n\n\tSelection: ");
   scanf("%d", &option);
+  clrscr();
 
   switch(option) {
     case 1: menu_new_polynomial(polyList); break;
@@ -115,7 +111,7 @@ void menu_new_polynomial(llist *polyList)
   int new_order;
   //print the instructions
   fprintf(stdout, "\n\tYou have chosen to make a new polynomial");
-  fprintf(stdout, "\n\nPlease enter the order of the polynomial");
+  fprintf(stdout, "\n\nPlease enter the order of the polynomial: ");
   scanf("%d", &new_order);
 
   Polynomial *p = make_polynomial(new_order);
@@ -124,7 +120,7 @@ void menu_new_polynomial(llist *polyList)
   for(int i=0; i<= new_order; i++)
   {
     fprintf(stdout, "Enter coefficient of x^%i: ", i);
-    scanf("%d", &p->Coefficient[i]);
+    scanf("%le", &p->Coefficient[i]);
   }
 
   if (polyList != NULL) {
@@ -301,11 +297,10 @@ void menu_print(llist *polyList)
     }
     else{
       do{
-	
 	print_polynomial(accessPoly(polyList));
-	gotoNextNode(polyList);
-	
-      }while(polyList->current->after != NULL);
+	polyList->current = polyList->current->after;//   <----- fix this to use
+      }while(polyList->current != NULL);             //           gotoNextNode()
+      polyList->current = polyList->head->after;
     }
   }
   else {
