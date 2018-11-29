@@ -38,5 +38,4 @@ PolyClean:
 	@-rm -f Poly *.o *~ *#
 
 PolyListClean:
-	cd Polynomials
 	@-rm -f PolyList *.o *~ *#

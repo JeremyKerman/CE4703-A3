@@ -80,8 +80,8 @@ void menu(llist *polyList)
   fprintf(stdout, "\n\t[6] Normalise a polynomial");
   fprintf(stdout, "\n\t[7] Get the order of a polynomial");
   fprintf(stdout, "\n\t[8] Print all polynomials");
-  fprintf(stdout, "\n\t[9] EXIT");                            
-  fprintf(stdout, "\n\n\tSelection: ");                       
+  fprintf(stdout, "\n\t[9] EXIT");
+  fprintf(stdout, "\n\n\tSelection: ");
   scanf("%d", &option);
 
   switch(option) {
@@ -115,11 +115,11 @@ void menu_new_polynomial(llist *polyList)
   int new_order;
   //print the instructions
   fprintf(stdout, "\n\tYou have chosen to make a new polynomial");
-  fprintf(stdout, "\n\nPlease enter the order of the polynomial");
+  fprintf(stdout, "\n\nPlease enter the order of the polynomial: ");
   scanf("%d", &new_order);
 
   Polynomial *p = make_polynomial(new_order);
-  
+
   /////////////////////////////////////////////////////////////////////////////////
   //add code here to request the coefficients and set them (p->coefficient[0] = )
   /////////////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ void menu_new_polynomial(llist *polyList)
 	// call insertAfter
 	if (insertAfter(p, polyList) == ok)
 	  printf("\nadded polynomial to list\n");
-	else 
+	else
 	  printf("\nInsuffient ressources, operation cancelled\n");
   }
   else {
@@ -292,19 +292,19 @@ void menu_print(llist *polyList)
   if (polyList != NULL) {
 
     polyList->current = polyList->head->after;
-    
+
     if (polyList->current == NULL){
       fprintf(stdout,"\nNo Polynomials to show\n");
     }
     else{
       while(polyList->current != NULL){
-	
+
 	print_polynomial(accessPoly(polyList));
 	gotoNextNode(polyList);
-	
+
       }
     }
-    
+
   }
   else {
 	printf("list to store polynomials not created\n");  //just for debugging
