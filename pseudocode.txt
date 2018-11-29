@@ -1,0 +1,11 @@
+CE4703 - Assignment 03
+Design Document & Pseudocode File
+
+Compiled & Written by Jeremy Pili (17216052)
+
+The following are grouped by source & header files. References to other files will be shown using <> tags.
+
+Poly.c / Poly.h
+
+	Header
+	
