@@ -135,8 +135,10 @@ llError deleteCurrent(llist *list)
     // current node is head. cannot remove.
     result = illegalNode;
   } else {
-    list->current->before->after = list->current->after;  //link previous node to next node
-    list->current->after->before = list->current->before; // ^^
+    list->current->before->after = list->current->after;//link previous node to next node
+    if (list->current->after != NULL){
+      list->current->after->before = list->current->before;
+    }
     free(list->current); // delete current node
   }
   return result;

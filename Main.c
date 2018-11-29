@@ -158,7 +158,22 @@ void menu_delete_polynomial(llist *polyList)
 {
   //clear the screen
   clrscr();
-
+  int toDelete;
+  fprintf(stdout, "\n\tYou have chosen to delete a polynomial");
+  if (polyList->head->after != NULL){
+    fprintf(stdout, "\n\nPlease choose a polynomial to delete: \n");
+    print_all(polyList);
+    fprintf(stdout, "\n\tSelection: ");
+    scanf("%d", &toDelete);
+    polyList->current = polyList->head;
+    for(int i = 0; i<toDelete; i++){
+      polyList->current = polyList->current->after;
+    }
+    deleteCurrent(polyList);
+  }
+  else {
+    fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO DELETE\n\n");
+  }
   
 
   //Go back to the menu
