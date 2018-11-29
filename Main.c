@@ -300,23 +300,13 @@ void menu_print(llist *polyList)
       fprintf(stdout,"\nNo Polynomials to show\n");
     }
     else{
-<<<<<<< HEAD
       do{
 	
 	print_polynomial(accessPoly(polyList));
 	gotoNextNode(polyList);
 	
       }while(polyList->current->after != NULL);
-=======
-      while(polyList->current != NULL){
-
-	print_polynomial(accessPoly(polyList));
-	gotoNextNode(polyList);
-
-      }
->>>>>>> f2842442ccf38d72763f12ab75592927f2bbf9c9
     }
-
   }
   else {
 	printf("list to store polynomials not created\n");  //just for debugging
