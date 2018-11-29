@@ -1,11 +1,67 @@
-CE4703 - Assignment 03
-Design Document & Pseudocode File
+  Please open with a monospace font for correct formatting.
+  
+  +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+
+  |                                                           |
+  |  CE4703 - Assignment 03                                   |
+  |  Design Document & Pseudocode File                        |
+  |                                                           |
+  |  Compiled & Written by Jeremy Pili (17216052)             |
+  |                                                           |
+  |  The following are grouped by source & header files.      |
+  |  Dependencies to other files will be shown using [] tags. |
+  |                                                           |
+  +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+
 
-Compiled & Written by Jeremy Pili (17216052)
+  Poly.c / Poly.h
+  Polynomial Implementation using arrays.
 
-The following are grouped by source & header files. References to other files will be shown using <> tags.
+    Header
+    
+== == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
+ 
+  PolyList.c / PolyList.h
+  Polynomial List using Double-Linked Lists (DL Lists).
+    
+    Header (PolyList.h) [Poly.h]
+    > Includes [Poly.h] for use in the DL List.
+    > Defines DL List Node & List structures alonside error enums.
+    > Defines the functions used in corresponding source file:
+        llist *listCreate()
+        void listDelete(llist *list)
+        Polynomial *accessPoly(llist *list)
+        llError insertAfter(Polynomial *p, llist *list)
+        llError deleteCurrent(llist *list)
+        void gotoHead(llist *list)
+        llError gotoNextNode(llist *list)
+        llError gotoPrevNode(llist *list)
 
-Poly.c / Poly.h
 
-	Header
-	
+    Source File (PolyList.c) [PolyList.h <- Poly.h]
+    llist *listCreate() 
+    Creates an empty DL List (head+tail only)
+    Params: None
+    Output: DL List pointer (success) / NULL pointer(failure)
+      > Create a pointer *list
+      > Allocate appropriate memory space to *list's address.
+      > Check for assignment success; Pointer leads to NULL if failed.
+      > Allocate head memory space
+      > Check for success; Clear allocation for list & set to NULL if failed.
+      > Assign next & previous node pointers within  head to NULL (tail pointer is NULL)
+      > Assign list's current node to the head node.
+      > Return *list as output.
+      
+    void listDelete(llist *list)
+    Deletes an entire DL List from memory
+    Params: *list >> Input DL List
+    Output: None
+      > Setup storage node *next
+      > Set current list node to head node
+      > While the next node after the head isn't empty (NULL):
+        | Set *next to the node after the head
+        | Clear polynomial memory inside next
+        | Set node after head to the node after *next
+        | Clear *next memory
+      > Once all other heads have been cleared:
+      > Clear head memory
+      > Clear list memory
+      
