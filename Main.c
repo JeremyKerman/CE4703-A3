@@ -159,8 +159,7 @@ void menu_delete_polynomial(llist *polyList)
   //clear the screen
   clrscr();
 
-  /* PRINT THE POLYNOMIALS AVAILABLE*/
-  /*DELETE THE CHOSEN POLYNOMIAL FROM THE HEAP*/
+  
 
   //Go back to the menu
   menu(polyList);
@@ -283,7 +282,23 @@ void menu_get_order(llist *polyList)
 
 
 ///////////////////////////////////////////////////////
-// void menu_print();
+// void menu_print(llist polyList);
+//
+// function to print all stored polynomials and return to menu
+//
+// parameters: void
+// returns:    void
+//////////////////////////////////////////////////////////////
+void menu_print(llist *polyList)
+{
+  print_all(polyList);
+
+  menu(polyList);
+
+}
+
+///////////////////////////////////////////////////////
+// void print_all(llist polyList);
 //
 // function to print all stored polynomials
 //
@@ -291,14 +306,14 @@ void menu_get_order(llist *polyList)
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_print(llist *polyList)
+void print_all(llist *polyList)
 {
   if (polyList != NULL) {
 
     polyList->current = polyList->head->after;
 
     if (polyList->current == NULL){
-      fprintf(stdout,"\nNo Polynomials to show\n");
+      fprintf(stdout,"\n\tNo Polynomials to show\n");
     }
     else{
       int i = 1;
@@ -314,7 +329,6 @@ void menu_print(llist *polyList)
 	printf("list to store polynomials not created\n");  //just for debugging
   }
 
-  menu(polyList);
 }
 
 ///////////////////////////////////////////////////////

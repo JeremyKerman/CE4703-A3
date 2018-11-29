@@ -21,5 +21,6 @@ void menu_print(llist *polyList);
 void menu_exit(llist *polyList);
 void clrscr();
 void print_polynomial(Polynomial *p, int i);
+void print_all(llist *polyList);
 
 #endif
