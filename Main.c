@@ -120,9 +120,12 @@ void menu_new_polynomial(llist *polyList)
 
   Polynomial *p = make_polynomial(new_order);
 
-  /////////////////////////////////////////////////////////////////////////////////
-  //add code here to request the coefficients and set them (p->coefficient[0] = )
-  /////////////////////////////////////////////////////////////////////////////////
+  fprintf(stdout, "\n");
+  for(int i=0; i<= new_order; i++)
+  {
+    fprintf(stdout, "Enter coefficient of x^%i: ", i);
+    scanf("%d", &p->Coefficient[i]);
+  }
 
   if (polyList != NULL) {
 
