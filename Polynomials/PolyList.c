@@ -16,13 +16,13 @@
 // listCreate()
 // creates an empty double linked list, head points to tail
 // which is implemented as NULL
-// 
+//
 // parameter: none
 // return: pointer to list if success
 //         pointer to NULL on failure
 ///////////////////////////////////////////////////////
 
-llist *listCreate() 
+llist *listCreate()
 {
   llist *list;
   list = (llist *) malloc(sizeof(llist));
@@ -52,14 +52,14 @@ llist *listCreate()
 ///////////////////////////////////////////////////////
 // listDelete(list)
 // deletes the entire list of which head is head-node
-// 
+//
 // parameter:	head - head of a valid list
 // return:		void
 ///////////////////////////////////////////////////////
-void listDelete(llist *list) 
+void listDelete(llist *list)
 {
   llnode *next;
-  
+
   // delete all nodes until list is empty
   // start at beginning of list
   list->current = list->head;
@@ -69,9 +69,9 @@ void listDelete(llist *list)
     free(next->p);
     list->head->after = list->head->after->after;
     free(next);
-  } 
-    
-  // delete head 
+  }
+
+  // delete head
   // and list itself
   free(list->head);
   free(list);
@@ -81,7 +81,7 @@ void listDelete(llist *list)
 ///////////////////////////////////////////////////////
 // insertAfter(p, list)
 // creates a new node newnode, associates data d with
-// newnode and inserts newnode in linse as successor of 
+// newnode and inserts newnode in linse as successor of
 // current node
 //
 // parameter: d - data to be associated with newnode
@@ -89,11 +89,11 @@ void listDelete(llist *list)
 // return: ok - insertion successful
 //         noMemory - no memory available to create newnode
 ///////////////////////////////////////////////////////
-llError insertAfter(Polynomial *p, llist *list) 
+llError insertAfter(Polynomial *p, llist *list)
 {
   llError returnvalue = ok;
   llnode *newnode;
-  
+
   // create new node
   newnode = (llnode *) malloc(sizeof(llnode));
   // allocation successful?
@@ -113,7 +113,7 @@ llError insertAfter(Polynomial *p, llist *list)
     list->current->after = newnode;
 
     // increment number of nodes by 1.
-    list->n = n++;
+    list->n++;
   }
   return returnvalue;
 }
@@ -149,7 +149,7 @@ llError deleteCurrent(llist *list)
 // parameter: list - list to be reset
 // return: void
 ///////////////////////////////////////////////////////
-void gotoHead(llist *list) 
+void gotoHead(llist *list)
 {
   // reset curren to head
   list->current = list->head;
@@ -167,9 +167,9 @@ llError gotoNextNode(llist *list)
 {
   llError result = ok;
   // is successor of current tail?
-  if (list->current->successor != NULL) {
+  if (list->current->after != NULL) {
     // no -> move forward
-    list->current = list->current->successor;
+    list->current = list->current->after;
   } else {
     // reached end of list, cannot move any further
     result = illegalNode;
@@ -192,7 +192,7 @@ llError gotoPrevNode(llist *list)
   // this node the head?
   if (list->current->before != NULL) {
     // no -> move backward
-    list->current = list->current->successor;
+    list->current = list->current->after;
   } else {
     // reached head, cannot move any further
     result = illegalNode;
@@ -209,7 +209,7 @@ llError gotoPrevNode(llist *list)
 // return: if current is head or tail: NULL
 //         otherwise, data of current node
 ///////////////////////////////////////////////////////
-Ploynomial *accessPoly(llist *list) 
+Polynomial *accessPoly(llist *list)
 {
   // is current head or tail?
   if (list->current != list->head && list->current != NULL) {
@@ -219,11 +219,4 @@ Ploynomial *accessPoly(llist *list)
     // yes, return NULL
     return NULL;
   }
-} 
-
-
-
-
-
-
-
+}

@@ -263,7 +263,7 @@ void menu_normalise_polynomial(llist *polyList)
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_get_order(llist *polyList)
+void menu_get_order(llist *polyList);
 {
   //clear the screen
   clrscr();
@@ -287,7 +287,7 @@ void menu_get_order(llist *polyList)
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_print(llist *polyList)
+void menu_print(llist *polyList);
 {
   if (polyList != NULL) {
 
@@ -297,12 +297,12 @@ void menu_print(llist *polyList)
       fprintf(stdout,"\nNo Polynomials to show\n");
     }
     else{
-      do{
+      while(polyList->current != NULL){
 	
 	print_polynomial(accessPoly(polyList));
 	gotoNextNode(polyList);
 	
-	}while(polyList->current->after != NULL);
+      }
     }
     
   }
@@ -322,9 +322,9 @@ void menu_print(llist *polyList)
 // returns:    void
 //////////////////////////////////////////////////////////////
 
-void menu_exit(llist *polyList)
+void menu_exit(llist *polyList);
 {
   listDelete(polyList);
-  fprintf(stdout,"\nGoodbye!\n");
+  fprintf(stdout,"\nGoodbye!\n")
   exit(0);
 }
