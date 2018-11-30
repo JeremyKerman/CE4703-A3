@@ -102,6 +102,7 @@ void menu(llist *polyList)
   scanf("%d", &option); // assign user input to 'option'
   clrscr(); // clears the screen 
 
+  // switch statement to run function chosen by user.
   switch(option) {
     case 1: menu_new_polynomial(polyList); break;
     case 2: menu_delete_polynomial(polyList); break;
@@ -117,45 +118,51 @@ void menu(llist *polyList)
   }
 }
 
-///////////////////////////////////////////////////////
-// void make_new_polynomial();
+///////////////////////////////////////////////////////////////////
+// void make_new_polynomial(llist *polylist);
 //
 // function call which allows the user to make a polynomial
 // and set custom coefficients
 //
-// parameters: void
+// parameters: llist *polylist (pointer to the current linked list)
 // returns:    void
-//////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 
 void menu_new_polynomial(llist *polyList)
 {
-  //Clear the screen
+  // Clear the screen
   clrscr();
+  // variable to store the chosen order
   int new_order;
-  //print the instructions
-  fprintf(stdout, "\n\tYou have chosen to make a new polynomial");
+  // print the instructions
+  fprintf(stdout, "\n\tYou have chosen to make a new polynomial"); 
   fprintf(stdout, "\n\nPlease enter the order of the polynomial: ");
-  scanf("%d", &new_order);
+  scanf("%d", &new_order);  // assigns user input to 'new_order'
 
-  Polynomial *p = make_polynomial(new_order);
-
+  Polynomial *p = make_polynomial(new_order);  // calls make_polynomial in Poly.c
+                                               // to create the polynomial of the chosen order
+                                               // and return a pointer
   fprintf(stdout, "\n");
+
+  // requests coefficients from user for each power of 'x' until
+  // chosen order is reached
   for(int i=0; i<= new_order; i++)
   {
     fprintf(stdout, "Enter coefficient of x^%i: ", i);
     scanf("%le", &p->Coefficient[i]);
   }
 
+  // checks if the list has been created (just for debugging)
   if (polyList != NULL) {
 
-	// call insertAfter
+    // calls insertAfter to insert the new polynomial to the list.
     while(polyList->current->after != NULL){
-      polyList->current = polyList->current->after;
+      polyList->current = polyList->current->after; // goes to last polynomial in list
     }
-    if (insertAfter(p, polyList) == ok)
-       printf("\nadded polynomial to list\n");
+    if (insertAfter(p, polyList) == ok) // tries to insert the polynomial
+      printf("\nadded polynomial to list\n"); //success
     else
-       printf("\nInsuffient ressources, operation cancelled\n");
+      printf("\nInsuffient ressources, operation cancelled\n"); //failure
   }
   else {
 	printf("list to store polynomials not created\n");  //just for debugging
