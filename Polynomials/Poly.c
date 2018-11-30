@@ -105,7 +105,7 @@ void divide_polynomial(Polynomial* p, double d) {
 int get_order(Polynomial* p) {
   for(int i=p->Order; i>=1; i--) {
     if(p->Coefficient[i])
-      return i;
+      return i-1;
   }
   return 0;
 }

@@ -13,15 +13,18 @@ run: Main
 	@./Main
 
 #main file
-Main: Poly.o PolyList.o Main.c
+Main:  PolyTest.o PolyList.o Poly.o Main.c
 	@$(CC) -Wall -ggdb -o $@ $^
 
 #module twoD
 Poly.o: Poly.c Poly.h
 	@gcc -Wall -ggdb -c $<
 
-PolList.o: PolyList.c PolyList.h
-		@gcc -Wall -ggdb $<
+PolyList.o: PolyList.c PolyList.h
+	@gcc -Wall -ggdb -c $<
+
+PolyTest.o: PolyTest.c
+		@gcc -Wall -c -ggdb $<
 
 #clean command "-f" to ignore messages when files don't exist
 # using "@" to surpress the command being written out
@@ -30,12 +33,9 @@ cleanMain:
 
 #command clean module folders to reduce
 #messages after the executable has finished
-cleanModules: PolyClean PolyListClean
+cleanModules: PolyClean
 
 #clean module folder
 PolyClean:
 	cd Polynomials
-	@-rm -f Poly *.o *~ *#
-
-PolyListClean:
-	@-rm -f PolyList *.o *~ *#
+	@-rm -f *.o *~ *#

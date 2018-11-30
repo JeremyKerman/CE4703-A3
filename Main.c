@@ -75,8 +75,8 @@ void menu(llist *polyList)
   fprintf(stdout, "\n\t[6] Normalise a polynomial");
   fprintf(stdout, "\n\t[7] Get the order of a polynomial");
   fprintf(stdout, "\n\t[8] Print all polynomials");
-  fprintf(stdout, "\n\t[9] EXIT");
-  fprintf(stdout, "\n\t[10] TEST EVERYTHING");
+  fprintf(stdout, "\n\t[9] TEST EVERYTHING");
+  fprintf(stdout, "\n\t[0] EXIT");
   fprintf(stdout, "\n\n\tSelection: ");
   scanf("%d", &option);
   clrscr();
@@ -91,7 +91,7 @@ void menu(llist *polyList)
     case 7: menu_get_order(polyList); break;
     case 8: menu_print(polyList); break;
     case 9: poly_test();break;
-    case 10: menu_exit(polyList); break;
+    case 0: menu_exit(polyList); break;
     default: break;
   }
 }

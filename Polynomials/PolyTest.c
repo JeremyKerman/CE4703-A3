@@ -59,4 +59,98 @@ void poly_test()
 
   printf("\n");
 
+  ///////////////////////////////////////////////////////////
+  // test multiply_polynomial()
+  ////////////////////////////////////////////////////////////
+  int multiply_result = 0; //set the result of the test 0 = pass, 1 = fail
+  int multiplicand = 3;
+  //make a copy of poly3 called poly4
+  Polynomial* poly4 = make_polynomial(5);
+  poly4->Coefficient[0] = 12;
+  poly4->Coefficient[1] = 9;
+  poly4->Coefficient[2] = 18;
+  poly4->Coefficient[3] = 6;
+  poly4->Coefficient[4] = 21;
+  poly4->Coefficient[5] = 3;
+  printf("\nPolynomial Multiplication Test\n");
+  multiply_polynomial(poly4, multiplicand);
+  for(int i=0; i<6; i++) {
+    printf("\n%gx^%i * %i = %gx^%i", poly3->Coefficient[i], i,
+                                      multiplicand, poly4->Coefficient[i], i);
+    if (((poly3->Coefficient[i] * multiplicand) != (poly4->Coefficient[i])));
+      multiply_result = 1;
+  }
+  if(!multiply_result) {
+    printf("\n\nTest Passed!");
+  } else {
+    printf("\n\nTest Passed!");
+  }
+  printf("\n=======================================\n");
+
+  printf("\n");
+
+  ///////////////////////////////////////////////////////////
+  // test divide_polynomial()
+  ////////////////////////////////////////////////////////////
+  //int multiply_result = 0; //set the result of the test 0 = pass, 1 = fail
+  int divisor = 3;
+  //Polynomial* poly4 = poly3;
+  int divide_result = 0;
+  printf("\nPolynomial Division Test\n");
+  divide_polynomial(poly4, divisor);
+  for(int i=0; i<6; i++) {
+    printf("\n%gx^%i / %i = %gx^%i", poly4->Coefficient[i] * divisor, i,
+                                      multiplicand, poly3->Coefficient[i], i);
+    if (((poly4->Coefficient[i] / divisor) != (poly3->Coefficient[i])));
+      divide_result = 1;
+  }
+  if(!divide_result) {
+    printf("\n\nTest Passed!");
+  } else {
+    printf("\n\nTest Passed!");
+  }
+  printf("\n=======================================\n");
+
+  printf("\n");
+
+
+///////////////////////////////////////////////////////////
+// test get_order()
+////////////////////////////////////////////////////////////
+//Expected result = 5
+int order = get_order(poly);
+
+printf("\nOrder of polynomial = 5");
+printf("\nresult of get_order() = %i", order);
+
+if(order == 5) {
+  printf("\n\nTest Passed!");
+} else {
+  printf("\n\nTest Passed!");
+}
+printf("\n=======================================\n");
+
+printf("\n");
+
+}
+
+///////////////////////////////////////////////////////////
+// test normalise()
+////////////////////////////////////////////////////////////
+//Expected result =
+// 4 + 3x + 6x^2 + 2x^3 + 7x^4 + x^5
+int order = get_order(poly);
+
+printf("\nOrder of polynomial = 5");
+printf("\nresult of get_order() = %i", order);
+
+if(order == 5) {
+  printf("\n\nTest Passed!");
+} else {
+  printf("\n\nTest Passed!");
+}
+printf("\n=======================================\n");
+
+printf("\n");
+
 }
