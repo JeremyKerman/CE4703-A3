@@ -50,13 +50,13 @@ void clrscr()
 void print_polynomial(Polynomial *p, int node)
 {
 
-  fprintf(stdout, "\n\tPolynomial %d =  ",node);
+  fprintf(stdout, "\nPolynomial [%d] =  ",node);
   fprintf(stdout, "%g", p->Coefficient[0]);
     for (int i = 1; i < p->Order; i++){
       if(p->Coefficient[i])
         fprintf(stdout, " + %gx^%d", p->Coefficient[i], i);
     }
-    fprintf(stdout, "\n\n");
+    fprintf(stdout, "\n");
 }
 
 ///////////////////////////////////////////////////////
@@ -76,6 +76,7 @@ void menu(llist *polyList)
   fprintf(stdout, "\n\t[7] Get the order of a polynomial");
   fprintf(stdout, "\n\t[8] Print all polynomials");
   fprintf(stdout, "\n\t[9] EXIT");
+  fprintf(stdout, "\n\t[10] TEST EVERYTHING");
   fprintf(stdout, "\n\n\tSelection: ");
   scanf("%d", &option);
   clrscr();
@@ -89,7 +90,8 @@ void menu(llist *polyList)
     case 6: menu_normalise_polynomial(polyList); break;
     case 7: menu_get_order(polyList); break;
     case 8: menu_print(polyList); break;
-    case 9: menu_exit(polyList); break;
+    case 9: poly_test();break;
+    case 10: menu_exit(polyList); break;
     default: break;
   }
 }
