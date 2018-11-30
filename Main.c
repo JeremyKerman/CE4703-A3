@@ -249,7 +249,7 @@ void menu_multiply_polynomial(llist *polyList)
     fprintf(stdout, "\n\tSelection: ");
     scanf("%d", &p1);
     
-    fprintf(stdout, "\n\nPlease enter the scalar: \n");
+    fprintf(stdout, "\n\nPlease enter the scalar: ");
     scanf("%lf", &s);
     
     polyList->current = polyList->head;
@@ -284,14 +284,40 @@ void menu_multiply_polynomial(llist *polyList)
 
 void menu_divide_polynomial(llist *polyList)
 {
-  //clear the screen
+
+//clear the screen
   clrscr();
 
-  /* PRINT THE POLYNOMIALS AVAILABLE*/
-  /*ALLOW THE USER TO CHOSE THE POLYNOMIAL AND
-    SCALAR THEY WANT TO DIVIDE BY*/
-
-  //Go back to the menu
+  int p1;
+  double s;
+  
+  fprintf(stdout, "\n\tYou have chosen to divide a polynomial by a scalar");
+  if (polyList->head->after != NULL){
+    fprintf(stdout, "\n\nPlease choose the polynomial: \n");
+    print_all(polyList);
+    fprintf(stdout, "\n\tSelection: ");
+    scanf("%d", &p1);
+    
+    fprintf(stdout, "\n\nPlease enter the scalar: ");
+    scanf("%lf", &s);
+    
+    polyList->current = polyList->head;
+    for(int i = 0; i<p1; i++){
+      polyList->current = polyList->current->after;
+    }
+    
+    divide_polynomial(polyList->current->p, s);
+    
+    fprintf(stdout, "\n\n\tANSWER: %g", polyList->current->p->Coefficient[0]);
+    for (int i = 1; i < (polyList->current->p->Order); i++){
+      fprintf(stdout, " + %gx^%d", polyList->current->p->Coefficient[i], i);
+    }
+    fprintf(stdout, "\n\n\tNew polynomial has been saved.\n\n");
+  }
+  else {
+    fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO DIVIDE\n\n");
+  }
+  
   menu(polyList);
 
 }
@@ -404,6 +430,6 @@ void print_all(llist *polyList)
 void menu_exit(llist *polyList)
 {
   listDelete(polyList);
-  fprintf(stdout,"\nGoodbye!\n");
+  fprintf(stdout,"\nGoodbye!\n\n");
   exit(0);
 }
