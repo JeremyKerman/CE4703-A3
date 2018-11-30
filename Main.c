@@ -136,6 +136,7 @@ void menu_new_polynomial(llist *polyList)
   // print the instructions
   fprintf(stdout, "\n\tYou have chosen to make a new polynomial"); 
   fprintf(stdout, "\n\nPlease enter the order of the polynomial: ");
+  
   scanf("%d", &new_order);  // assigns user input to 'new_order'
 
   Polynomial *p = make_polynomial(new_order);  // calls make_polynomial in Poly.c

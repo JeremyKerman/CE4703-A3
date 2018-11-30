@@ -1,8 +1,6 @@
 //////////////////////////////////////////////////
 //
-//  comments comments comments
 //  C file for Polynomials module
-//  comments comments comments
 //
 ///////////////////////////////////////////////////
 
@@ -23,13 +21,14 @@
 //
 // Returns:    Polynomial p of order n
 //////////////////////////////////////////////////////
-Polynomial* make_polynomial(int n) {
+Polynomial* make_polynomial(int n) 
+{
     n++; // x^0 also counted
-    Polynomial* p = malloc((sizeof(Polynomial)+n*sizeof(double*)));
-    if (!p) { perror("malloc make_polynomial"); exit(EXIT_FAILURE);};
-    p->Order = n;
-    for (int i=0; i<n; i++) p->Coefficient[i] =  0.0;
-    return p;
+    Polynomial* p = malloc((sizeof(Polynomial)+n*sizeof(double*))); //allocates memory to polynomial
+    if (!p) { perror("malloc make_polynomial"); exit(EXIT_FAILURE);};  //if error, exit
+    p->Order = n; // set order to n
+    for (int i=0; i<n; i++) p->Coefficient[i] =  0.0;  // initialise coefficients 
+    return p;  // return polynomial
 }
 
 ////////////////////////////////////////////////////
@@ -41,8 +40,9 @@ Polynomial* make_polynomial(int n) {
 //
 // Returns:    void
 //////////////////////////////////////////////////////
-void del_polynomial(Polynomial* p) {
-  free(p);
+void del_polynomial(Polynomial* p) 
+{
+  free(p);  //deallocates memory to polynomial
 }
 
 ////////////////////////////////////////////////////
@@ -54,14 +54,15 @@ void del_polynomial(Polynomial* p) {
 //
 // Returns:    Polynomial sum of p1 & p2
 //////////////////////////////////////////////////////
-Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2) {
-  int highest_order = MAX(p1->Order, p2->Order);
-  Polynomial* p3 = make_polynomial(MAX(p1->Order, p2->Order));
+Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2) 
+{
+  int highest_order = MAX(p1->Order, p2->Order);  // sets order of new polynomial to the highest of the parameters
+  Polynomial* p3 = make_polynomial(MAX(p1->Order, p2->Order)); //makes new polynomial of that order
 
-  for(int i=0; i<highest_order; i++) {
+  for(int i=0; i<highest_order; i++) { 
       p3->Coefficient[i] = p1->Coefficient[i] + p2->Coefficient[i]; //if a coefficient is NULL
   }                                                                 //it will be treated as 0
-  return p3;
+  return p3; // returns new polynomial
 }
 
 ////////////////////////////////////////////////////
@@ -75,7 +76,7 @@ Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2) {
 //////////////////////////////////////////////////////
 void multiply_polynomial(Polynomial* p, double d) {
   for(int i=0; i<p->Order; i++) {
-    p->Coefficient[i] *= d;
+    p->Coefficient[i] *= d;  // loops through coefficients multiplying them by scalar 'd'
   }
 }
 
@@ -90,7 +91,7 @@ void multiply_polynomial(Polynomial* p, double d) {
 //////////////////////////////////////////////////////
 void divide_polynomial(Polynomial* p, double d) {
   for(int i=0; i<p->Order; i++) {
-    p->Coefficient[i] /= d;
+    p->Coefficient[i] /= d;  // loops through coefficients dividing them by scalar 'd'
   }
 }
 
@@ -103,7 +104,7 @@ void divide_polynomial(Polynomial* p, double d) {
 // Returns:    int - the highest order of the polynomial
 //////////////////////////////////////////////////////
 int get_order(Polynomial* p) {
-  for(int i=p->Order; i>=1; i--) {
+  for(int i=p->Order; i>=1; i--) {  //loops through coefficients counting them
     if(p->Coefficient[i])
       return i-1;
   }
@@ -121,11 +122,11 @@ int normalise(Polynomial* p) {
   double divisor;
   for (int j= (p->Order-1); j>=0; j--) {
     if(p->Coefficient[j]) { //checking if divisor is 0
-      divisor = p->Coefficient[j];
+      divisor = p->Coefficient[j]; // sets divisor to be the highest power coefficient
       for (int i=0; i<p->Order; i++) {
-        p->Coefficient[i] /= divisor;
+        p->Coefficient[i] /= divisor;  // loops through coefficients dividing them by divisor
       }
-      return 1;
+      return 1; // returns 1 for success
     }
   }
   fprintf(stdout, "\nCan't normalise polynomial\n"); // no non-zero coefficient was found
