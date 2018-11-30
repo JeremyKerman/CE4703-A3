@@ -449,24 +449,27 @@ void menu_get_order(llist *polyList)
   //clear the screen
   clrscr();
 
-  int p1;
-  int order;
+  int p1;  // variable to store number in list of chosen polynomial
+  int order; // variable to store the order of the chosen polynomial
 
   fprintf(stdout, "\n\tYou have chosen to get the order of a polynomial");
-  if (polyList->head->after != NULL){
+  
+  if (polyList->head->after != NULL){ // checks if list is empty before proceeding
     fprintf(stdout, "\n\nPlease choose the polynomial to get the order of: \n");
-    print_all(polyList);
+    print_all(polyList); // prints all polynomials 
     fprintf(stdout, "\n\tSelection: ");
-    scanf("%d", &p1);
+    scanf("%d", &p1); //stores user selection
 
-    polyList->current = polyList->head;
+    polyList->current = polyList->head; // goes to start of list
     for(int i = 0; i<p1; i++){
-      polyList->current = polyList->current->after;
+      polyList->current = polyList->current->after; //loops to find user chosen polynomial
     }
 
-    order = (polyList->current->p->Order)-1;
+    order = (polyList->current->p->Order)-1; // gets correct order of polynomial
+                                             // order is one bigger than true order
+                                             // for convenience in other functions
 
-    fprintf(stdout, "\n\n\tThis polynomial is of order: %d\n\n", order);
+    fprintf(stdout, "\n\n\tThis polynomial is of order: %d\n\n", order);  // prints order
 
   }
   else {
@@ -484,43 +487,45 @@ void menu_get_order(llist *polyList)
 //
 // function to print all stored polynomials and return to menu
 //
-// parameters: void
+// parameters: llist *polyList
 // returns:    void
 //////////////////////////////////////////////////////////////
 void menu_print(llist *polyList)
 {
-  print_all(polyList);
+  print_all(polyList); //prints all polynomials
 
-  menu(polyList);
+  menu(polyList); //returns to menu
 
 }
 
 ///////////////////////////////////////////////////////
-// void print_all(llist polyList);
+// void print_all(llist *polyList);
 //
 // function to print all stored polynomials
 //
-// parameters: void
+// parameters: llist *polyList
 // returns:    void
 //////////////////////////////////////////////////////////////
 
 void print_all(llist *polyList)
 {
-  if (polyList != NULL) {
+  if (polyList != NULL) { // checks if polyList has been created (debugging purposes)
 
-    polyList->current = polyList->head->after;
+    polyList->current = polyList->head->after; // moves to first node in list
 
-    if (polyList->current == NULL){
+    if (polyList->current == NULL){ // checks if list is empty
       fprintf(stdout,"\n\tNo Polynomials to show\n");
     }
     else{
-      int i = 1;
+      int i = 1; 
       do{
-	print_polynomial(accessPoly(polyList),i);
-	i++;
-	polyList->current = polyList->current->after;//   <----- fix this to use
-      }while(polyList->current != NULL);             //           gotoNextNode()
-      polyList->current = polyList->head->after;
+	print_polynomial(accessPoly(polyList),i); // calls print on the ith polynomial 
+	                                          // which is retrieved by accessPoly();
+	i++;  // increments i
+	polyList->current = polyList->current->after; //moves to next node
+      }while(polyList->current != NULL);   // loops until tail is reached
+
+      polyList->current = polyList->head->after; //returns to start of list
     }
   }
   else {
@@ -530,17 +535,17 @@ void print_all(llist *polyList)
 }
 
 ///////////////////////////////////////////////////////
-// void menu_exit();
+// void menu_exit(llist *polyList);
 //
 // function to delete the list and close the program.
 //
-// parameters: void
+// parameters: llist *polyList
 // returns:    void
 //////////////////////////////////////////////////////////////
 
 void menu_exit(llist *polyList)
 {
-  listDelete(polyList);
+  listDelete(polyList);   // calls listDelete to free the memory allocated to llist polyList
   fprintf(stdout,"\nGoodbye!\n\n");
-  exit(0);
+  exit(0);  // exits program
 }
