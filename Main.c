@@ -225,6 +225,19 @@ void menu_add_polynomials(llist *polyList)
       fprintf(stdout, " + %gx^%d", answer->Coefficient[i], i);
     }
     fprintf(stdout, "\n\n");
+
+    fprintf(stdout, "Would you like to add this new polynomial to the list? (Y/N): ");
+    char store;
+    scanf(" %c", &store);
+    if ((store == 'y') | (store == 'Y')){
+      while(polyList->current->after != NULL){
+	polyList->current = polyList->current->after;
+      }
+      if (insertAfter(answer, polyList) == ok)
+	printf("\nadded polynomial to list\n");
+      else
+	printf("\nInsuffient ressources, operation cancelled\n");
+    }
   }
   else {
     fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO ADD\n\n");

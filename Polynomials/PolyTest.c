@@ -10,7 +10,7 @@
 #include "PolyList.h"
 #include "Poly.h"
 
-void poly_test()
+void poly_test()//     <----- declared in Main.h
 {
   ////////////////////////////////////////////////////////////
   // test make_polynomial()
@@ -47,7 +47,7 @@ void poly_test()
     printf("\n%gx^%i + %gx^%i = %gx^%i", poly->Coefficient[i], i,
                                        poly2->Coefficient[i], i,
                                        poly3->Coefficient[i], i);
-    if (((poly->Coefficient[i] + poly2->Coefficient[i]) != (poly3->Coefficient[i])));
+    if (((poly->Coefficient[i] + poly2->Coefficient[i]) != (poly3->Coefficient[i])))
       add_result = 1;
   }
   if(!add_result) {
@@ -77,7 +77,7 @@ void poly_test()
   for(int i=0; i<6; i++) {
     printf("\n%gx^%i * %i = %gx^%i", poly3->Coefficient[i], i,
                                       multiplicand, poly4->Coefficient[i], i);
-    if (((poly3->Coefficient[i] * multiplicand) != (poly4->Coefficient[i])));
+    if (((poly3->Coefficient[i] * multiplicand) != (poly4->Coefficient[i])))
       multiply_result = 1;
   }
   if(!multiply_result) {
@@ -101,7 +101,7 @@ void poly_test()
   for(int i=0; i<6; i++) {
     printf("\n%gx^%i / %i = %gx^%i", poly4->Coefficient[i] * divisor, i,
                                       multiplicand, poly3->Coefficient[i], i);
-    if (((poly4->Coefficient[i] / divisor) != (poly3->Coefficient[i])));
+    if (((poly4->Coefficient[i] / divisor) != (poly3->Coefficient[i])))
       divide_result = 1;
   }
   if(!divide_result) {
@@ -118,39 +118,39 @@ void poly_test()
 // test get_order()
 ////////////////////////////////////////////////////////////
 //Expected result = 5
-int order = get_order(poly);
+  int order = get_order(poly);
 
-printf("\nOrder of polynomial = 5");
-printf("\nresult of get_order() = %i", order);
+  printf("\nOrder of polynomial = 5");
+  printf("\nresult of get_order() = %i", order);
 
-if(order == 5) {
-  printf("\n\nTest Passed!");
-} else {
-  printf("\n\nTest Passed!");
-}
-printf("\n=======================================\n");
+  if(order == 5) {
+    printf("\n\nTest Passed!");
+  } else {
+    printf("\n\nTest Passed!");
+  }
+  printf("\n=======================================\n");
 
-printf("\n");
+  printf("\n");
 
-}
+
 
 ///////////////////////////////////////////////////////////
 // test normalise()
 ////////////////////////////////////////////////////////////
 //Expected result =
 // 4 + 3x + 6x^2 + 2x^3 + 7x^4 + x^5
-int order = get_order(poly);
+  order = get_order(poly);
+  
+  printf("\nOrder of polynomial = 5");
+  printf("\nresult of get_order() = %i", order);
 
-printf("\nOrder of polynomial = 5");
-printf("\nresult of get_order() = %i", order);
+  if(order == 5) {
+    printf("\n\nTest Passed!");
+  } else {
+    printf("\n\nTest Passed!");
+  }
+  printf("\n=======================================\n");
 
-if(order == 5) {
-  printf("\n\nTest Passed!");
-} else {
-  printf("\n\nTest Passed!");
-}
-printf("\n=======================================\n");
-
-printf("\n");
+  printf("\n");
 
 }
