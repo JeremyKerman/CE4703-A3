@@ -1,5 +1,5 @@
   Please display with a monospace font for correct formatting.
-  
+
   +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+
   |                                                           |
   |  CE4703 - Assignment 03                                   |
@@ -28,59 +28,59 @@
         void divide_polynomial(Polynomial* p, double d)
         int get_order(Polynomial* p)
         int normalise(Polynomial* p)
-      
+
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-    
-    Source File (Poly.c) 
+
+    Source File (Poly.c)
       Polynomial* make_polynomial(int n)
       Creates a pointer to a Polynomial of n coefficients (all set to 0.0)
       Params: n >> Number of coefficients
       Output: Polynomial pointer
-        
-        
+
+
       void del_polynomial(Polynomial* p)
       Deletes the Polynomial at the pointer's adress & the pointer itself
       Params: *p >> Polynomial to be deleted
       Output: None
-        
-        
+
+
       Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2)
       Adds two Polynomials together.
       Params: *p1 /*p2 >> Input Polynomials
       Output: A new Polynomial
-        
-        
+
+
       void multiply_polynomial(Polynomial* p, double d)
       Multiplies a Polynomial by a scalar value
       Params: *p >> Input Polynomial
               d >> Scalar value (double)
       Output: None
-        
-        
+
+
       void divide_polynomial(Polynomial* p, double d)
       Divides a Polynomial by a scalar value
       Params: *p >> Input Polynomial
               d >> Scalar value (double)
       Output: None
-        
-        
+
+
       int get_order(Polynomial* p)
       Returns the higheest order of the Polynomial
       Params: *p >> Input Polynomial
       Output: Highest order of the Polynomial (type int)
-        
-        
+
+
       int normalise(Polynomial* p)
       Normalises a function; Manipulated in such a way where the coefficient of the highest order is 1
       Params: *p >> Input Polynomial
       Output: Nothing if successful, Prints "Can't normalise polynomial" if failed
-        
-        
+
+
 == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
- 
+
   PolyList.c / PolyList.h
   Polynomial List using Double-Linked Lists (DL Lists).
-    
+
     Header File (PolyList.h) [Poly.h , Poly.c <- Poly.h]
     > Includes [Poly.h] for use in the DL List.
     > Defines DL List Node & List structures alonside error enums.
@@ -97,7 +97,7 @@
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
     Source File (PolyList.c) [PolyList.h <- Poly.h , Poly.c <- Poly.h]
-      llist *listCreate() 
+      llist *listCreate()
       Creates an empty DL List (head+tail only)
       Params: None
       Output: DL List pointer (success) / NULL pointer(failure)
@@ -109,7 +109,7 @@
         > Assign next & previous node pointers within  head to NULL (tail pointer is NULL)
         > Assign list's current node to the head node
         > Return *list as output
-        
+
       void listDelete(llist *list)
       Deletes an entire DL List from memory
       Params: *list >> Input DL List
@@ -124,7 +124,7 @@
         > Once all other nodes have been cleared:
         > Clear head memory
         > Clear list memory
-        
+
       llError insertAfter(Polynomial *p, llist *list)
       Inserts a new Polynomial node after the current one in the list
       Params: *p >> Polynomial data inside the new node
@@ -136,7 +136,7 @@
             ie: current <-> new <-> next
         > Increase node number tracker value
         > Return ok  as debug output
-      
+
       llError deleteCurrent(llist *list)
       Deletes the currently selected node in a DL List
       Params: *list >> Input List
@@ -145,13 +145,13 @@
         > Relink nodes before and after the current one together
         > Clear the current node
         > Return ok as debug output
-      
+
       void gotoHead(llist *list)
       Sets the current node of a DL List to its header
       Params: *list >> Input DL List
       Output: None
         > Set current node as the head node
-      
+
       llError gotoNextNode(llist *list)
       Sets the current node in a DL List to the next node in the list
       Params: *list >> Input DL List
@@ -159,7 +159,7 @@
         > Check if current node is the tail: return illegalNode if true (terminates)
         > Set current node as next node
         > Return ok as debug output
-        
+
       llError gotoPrevNode(llist *list)
       Sets the current node in a DL List to the previous node in the list
       Params: *list >> Input DL List
@@ -167,7 +167,7 @@
         > Check if current node is the head: return illegalNode if true (terminates)
         > Set current node as previous node
         > Return ok as debug output
-        
+
       Polynomial *accessPoly(llist *list)
       Returns Polynomial data within a DL List node
       Params: *list >> Input DL List
@@ -176,7 +176,3 @@
         > Return Polynomial data inside the current node
 
 == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
-
-
-
-
