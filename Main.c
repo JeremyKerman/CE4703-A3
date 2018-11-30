@@ -386,12 +386,32 @@ void menu_get_order(llist *polyList)
   //clear the screen
   clrscr();
 
-  /* PRINT THE POLYNOMIALS AVAILABLE*/
-  /*ALLOW THE USER TO CHOSE THE POLYNOMIAL THEY WANT TO GET THE ORDER OF*/
+  int p1;
+  int order;
+  
+  fprintf(stdout, "\n\tYou have chosen to get the order of a polynomial");
+  if (polyList->head->after != NULL){
+    fprintf(stdout, "\n\nPlease choose the polynomial to get the order of: \n");
+    print_all(polyList);
+    fprintf(stdout, "\n\tSelection: ");
+    scanf("%d", &p1);
 
+    polyList->current = polyList->head;
+    for(int i = 0; i<p1; i++){
+      polyList->current = polyList->current->after;
+    }
+
+    order = (polyList->current->p->Order)-1;
+
+    fprintf(stdout, "\n\n\tThis polynomial is of order: %d\n\n", order);
+
+  }
+  else {
+    fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE\n\n");
+  }
   //Go back to the menu
   menu(polyList);
-
+  
 }
 
 
