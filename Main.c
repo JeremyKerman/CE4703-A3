@@ -5,16 +5,10 @@
 // Date: 22.11.2018
 // Authors:  Dominik Przychodni - 17204658
 //           Bryan McSweeney    - 17223962
-<<<<<<< HEAD
 //           Matas Mockus       - 17203813
-//           Eoghan McGrath
-//           Jeremy Pili        
-=======
-//           Jeremy Pili        -
-//           Matas Mockus       -
+//           Jeremy Pili
 //           Eoghan McGrath     -
 //
->>>>>>> 042a94bf7a4d7da8f301beaff12f5a8855a4e4c1
 ///////////////////////////////////////////////////////
 
 //include system headers
@@ -40,7 +34,7 @@ int main()
   clrscr();
   //go to the menu
   menu(polyList);
-  
+
   return EXIT_SUCCESS;
 }
 
@@ -53,7 +47,7 @@ int main()
 //////////////////////////////////////////////////////
 void clrscr()
 {
-  system("clear");  
+  system("clear");
 }
 
 ///////////////////////////////////////////////////////
@@ -62,47 +56,35 @@ void clrscr()
 // prints a single polynomial to the screen
 // including its position in the list.
 //
-// parameters: Polynomial *p , int node (position in list) 
+// parameters: Polynomial *p , int node (position in list)
 // returns:    void
 //////////////////////////////////////////////////////////////
 void print_polynomial(Polynomial *p, int node)
 {
   // prints polynomials position in the list
-  fprintf(stdout, "\nPolynomial [%d] =  ",node); 
+  fprintf(stdout, "\nPolynomial [%d] =  ",node);
   fprintf(stdout, "%g", p->Coefficient[0]); // prints the first constant coefficient.
-  
+
   for (int i = 1; i < p->Order; i++){  // loops through the polynomial
-    if(p->Coefficient[i])  
+    if(p->Coefficient[i])
       fprintf(stdout, " + %gx^%d", p->Coefficient[i], i); // prints the coefficient and the power on the variable.
     }
-  
+
   fprintf(stdout, "\n");  //newline
 }
-
-<<<<<<< HEAD
-///////////////////////////////////////////////////////
-// void menu(polylist)
-//
-// menu fucntion which prints the menu and allows the user
-// to make a tSelection
-//
-// parameters: llist polyList - pointer to a linked list of polynomials
-//////////////////////////////////////////////////////
-=======
->>>>>>> 042a94bf7a4d7da8f301beaff12f5a8855a4e4c1
 
 //////////////////////////////////////////////////////////////////////////////////
 // void menu();
 //
-// Main menu for the program.
+// Main menu for the program. Allows the user to make a selection on their action.
 //
-// parameters: llist *polyList (pointer to the current linked list of polynomials) 
+// parameters: llist *polyList (pointer to the current linked list of polynomials)
 // returns:    void
 /////////////////////////////////////////////////////////////////////////////////
 void menu(llist *polyList)
 {
   int option; // variable to store the user's selection
-  
+
   fprintf(stdout, "\n\tWhat would you like to do?");
   fprintf(stdout, "\n\t[1] Make a new polynomial");
   fprintf(stdout, "\n\t[2] Delete a Polynomial");
@@ -115,9 +97,9 @@ void menu(llist *polyList)
   fprintf(stdout, "\n\t[9] TEST EVERYTHING");
   fprintf(stdout, "\n\t[0] EXIT");
   fprintf(stdout, "\n\n\tSelection: ");
-  
+
   scanf("%d", &option); // assign user input to 'option'
-  clrscr(); // clears the screen 
+  clrscr(); // clears the screen
 
   switch(option) {
     case 1: menu_new_polynomial(polyList); break;
