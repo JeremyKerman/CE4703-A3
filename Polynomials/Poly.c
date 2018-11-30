@@ -29,6 +29,7 @@ Polynomial* make_polynomial(int n) {
     if (!p) { perror("malloc make_polynomial"); exit(EXIT_FAILURE);};
     p->Order = n;
     for (int i=0; i<n; i++) p->Coefficient[i] =  0.0;
+    printf("order = %d", n);
     return p;
 }
 
@@ -118,12 +119,13 @@ int get_order(Polynomial* p) {
 // Parameters: Polynomial p  - Polynomial
 //////////////////////////////////////////////////////
 int normalise(Polynomial* p) {
-  int order = p->Order;
+  printf("order = %d",p->Order);
   double divisor;
-  for (int j=order; j>=0; j--) {
+  for (int j= (p->Order-1); j>=0; j--) {
     if(p->Coefficient[j]) { //checking if divisor is 0
       divisor = p->Coefficient[j];
-      for (int i=0; i<=order; i++) {
+      printf("%.2f",divisor);
+      for (int i=0; i<p->Order; i++) {
         p->Coefficient[i] /= divisor;
       }
       return 1;

@@ -336,9 +336,37 @@ void menu_normalise_polynomial(llist *polyList)
   //clear the screen
   clrscr();
 
-  /* PRINT THE POLYNOMIALS AVAILABLE*/
-  /*ALLOW THE USER TO CHOSE THE POLYNOMIAL THEY WANT TO NORMALISE*/
+  int p1;
+  
+  fprintf(stdout, "\n\tYou have chosen to normalise a polynomial");
+  if (polyList->head->after != NULL){
+    fprintf(stdout, "\n\nPlease choose the polynomial to normalise: \n");
+    print_all(polyList);
+    fprintf(stdout, "\n\tSelection: ");
+    scanf("%d", &p1);
 
+    polyList->current = polyList->head;
+    for(int i = 0; i<p1; i++){
+      polyList->current = polyList->current->after;
+    }
+
+    if ( normalise(polyList->current->p) == 1){
+      
+      fprintf(stdout, "\n\n\tNormalised polynomial: %g", polyList->current->p->Coefficient[0]);
+      for (int i = 1; i < (polyList->current->p->Order); i++){
+	fprintf(stdout, " + %gx^%d", polyList->current->p->Coefficient[i], i);
+      }
+      fprintf(stdout, "\n\n\tNew polynomial has been saved.\n\n");
+
+    }
+    else{
+      fprintf(stdout, "\n\n\tPOLYNOMIAL COULD NOT BE NORMALISED.\n\n");
+    }
+
+  }
+  else {
+    fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO NORMALISE\n\n");
+  }
   //Go back to the menu
   menu(polyList);
 
