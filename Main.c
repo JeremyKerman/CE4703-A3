@@ -126,7 +126,9 @@ void menu_new_polynomial(llist *polyList)
   if (polyList != NULL) {
 
 	// call insertAfter
-    polyList->current = polyList->head;
+    while(polyList->current->after != NULL){
+      polyList->current = polyList->current->after;
+    }
     if (insertAfter(p, polyList) == ok)
        printf("\nadded polynomial to list\n");
     else
