@@ -29,8 +29,11 @@
 int main()
 {
   llist *polyList = listCreate();//creates list to store the polynomials
-  polyList->nodes = 0;
-  
+  polyList->nodes = 0; //initializes the nodes in the list to 0
+
+  //clear the screen from compilation messages
+  clrscr();
+  //go to the menu
   menu(polyList);
   return EXIT_SUCCESS;
 }
@@ -41,23 +44,27 @@ int main()
 //////////////////////////////////////////////////////
 void clrscr()
 {
-  system("@cls||clear");
+  system("clear");
 }
 
 void print_polynomial(Polynomial *p, int node)
 {
-  
+
   fprintf(stdout, "\n\tPolynomial %d =  ",node);
   fprintf(stdout, "%g", p->Coefficient[0]);
     for (int i = 1; i < p->Order; i++){
-      fprintf(stdout, " + %gx^%d", p->Coefficient[i], i);
+      if(p->Coefficient[i])
+        fprintf(stdout, " + %gx^%d", p->Coefficient[i], i);
     }
     fprintf(stdout, "\n\n");
 }
 
+///////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////
+
 void menu(llist *polyList)
 {
-  
   int option;
   fprintf(stdout, "\n\tWhat would you like to do?");
   fprintf(stdout, "\n\t[1] Make a new polynomial");
@@ -163,7 +170,7 @@ void menu_delete_polynomial(llist *polyList)
   else {
     fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO DELETE\n\n");
   }
-  
+
 
   //Go back to the menu
   menu(polyList);
@@ -187,7 +194,7 @@ void menu_add_polynomials(llist *polyList)
   int add2;
   Polynomial *p1;
   Polynomial *p2;
-  
+
   fprintf(stdout, "\n\tYou have chosen to add two polynomials");
   if (polyList->head->after != NULL){
     fprintf(stdout, "\n\nPlease choose the first polynomial: \n");
@@ -218,7 +225,7 @@ void menu_add_polynomials(llist *polyList)
   else {
     fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO ADD\n\n");
   }
-  
+
 
   //Go back to the menu
   menu(polyList);
@@ -241,24 +248,24 @@ void menu_multiply_polynomial(llist *polyList)
 
   int p1;
   double s;
-  
+
   fprintf(stdout, "\n\tYou have chosen to multiply a polynomial by a scalar");
   if (polyList->head->after != NULL){
     fprintf(stdout, "\n\nPlease choose the polynomial: \n");
     print_all(polyList);
     fprintf(stdout, "\n\tSelection: ");
     scanf("%d", &p1);
-    
+
     fprintf(stdout, "\n\nPlease enter the scalar: ");
     scanf("%lf", &s);
-    
+
     polyList->current = polyList->head;
     for(int i = 0; i<p1; i++){
       polyList->current = polyList->current->after;
     }
-    
+
     multiply_polynomial(polyList->current->p, s);
-    
+
     fprintf(stdout, "\n\n\tANSWER: %g", polyList->current->p->Coefficient[0]);
     for (int i = 1; i < (polyList->current->p->Order); i++){
       fprintf(stdout, " + %gx^%d", polyList->current->p->Coefficient[i], i);
@@ -268,7 +275,7 @@ void menu_multiply_polynomial(llist *polyList)
   else {
     fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO MULTIPLY\n\n");
   }
-  
+
   menu(polyList);
 
 }
@@ -290,24 +297,24 @@ void menu_divide_polynomial(llist *polyList)
 
   int p1;
   double s;
-  
+
   fprintf(stdout, "\n\tYou have chosen to divide a polynomial by a scalar");
   if (polyList->head->after != NULL){
     fprintf(stdout, "\n\nPlease choose the polynomial: \n");
     print_all(polyList);
     fprintf(stdout, "\n\tSelection: ");
     scanf("%d", &p1);
-    
+
     fprintf(stdout, "\n\nPlease enter the scalar: ");
     scanf("%lf", &s);
-    
+
     polyList->current = polyList->head;
     for(int i = 0; i<p1; i++){
       polyList->current = polyList->current->after;
     }
-    
+
     divide_polynomial(polyList->current->p, s);
-    
+
     fprintf(stdout, "\n\n\tANSWER: %g", polyList->current->p->Coefficient[0]);
     for (int i = 1; i < (polyList->current->p->Order); i++){
       fprintf(stdout, " + %gx^%d", polyList->current->p->Coefficient[i], i);
@@ -317,7 +324,7 @@ void menu_divide_polynomial(llist *polyList)
   else {
     fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO DIVIDE\n\n");
   }
-  
+
   menu(polyList);
 
 }
@@ -337,7 +344,7 @@ void menu_normalise_polynomial(llist *polyList)
   clrscr();
 
   int p1;
-  
+
   fprintf(stdout, "\n\tYou have chosen to normalise a polynomial");
   if (polyList->head->after != NULL){
     fprintf(stdout, "\n\nPlease choose the polynomial to normalise: \n");
@@ -351,7 +358,7 @@ void menu_normalise_polynomial(llist *polyList)
     }
 
     if ( normalise(polyList->current->p) == 1){
-      
+
       fprintf(stdout, "\n\n\tNormalised polynomial: %g", polyList->current->p->Coefficient[0]);
       for (int i = 1; i < (polyList->current->p->Order); i++){
 	fprintf(stdout, " + %gx^%d", polyList->current->p->Coefficient[i], i);
@@ -388,7 +395,7 @@ void menu_get_order(llist *polyList)
 
   int p1;
   int order;
-  
+
   fprintf(stdout, "\n\tYou have chosen to get the order of a polynomial");
   if (polyList->head->after != NULL){
     fprintf(stdout, "\n\nPlease choose the polynomial to get the order of: \n");
@@ -411,7 +418,7 @@ void menu_get_order(llist *polyList)
   }
   //Go back to the menu
   menu(polyList);
-  
+
 }
 
 

@@ -29,7 +29,6 @@ Polynomial* make_polynomial(int n) {
     if (!p) { perror("malloc make_polynomial"); exit(EXIT_FAILURE);};
     p->Order = n;
     for (int i=0; i<n; i++) p->Coefficient[i] =  0.0;
-    printf("order = %d", n);
     return p;
 }
 
