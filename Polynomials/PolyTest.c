@@ -139,10 +139,8 @@ printf("\n");
 ////////////////////////////////////////////////////////////
 //Expected result =
 // 4 + 3x + 6x^2 + 2x^3 + 7x^4 + x^5
-int order = get_order(poly);
 
-printf("\nOrder of polynomial = 5");
-printf("\nresult of get_order() = %i", order);
+normalise(poly4);
 
 if(order == 5) {
   printf("\n\nTest Passed!");
