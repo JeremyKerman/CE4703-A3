@@ -126,7 +126,7 @@ void poly_test()//     <----- declared in Main.h
   if(order == 5) {
     printf("\n\nTest Passed!");
   } else {
-    printf("\n\nTest Passed!");
+    printf("\n\nTest Failed!");
   }
   printf("\n=======================================\n");
 
@@ -140,15 +140,23 @@ void poly_test()//     <----- declared in Main.h
 //Expected result =
 // 4 + 3x + 6x^2 + 2x^3 + 7x^4 + x^5
 
+printf("\nTest to normalise Polynomial");
+print_polynomial(poly4, 1);
 normalise(poly4);
+printf("\n\nAfter Normalising:");
+print_polynomial(poly4, 2);
 
-if(order == 5) {
-  printf("\n\nTest Passed!");
-} else {
-  printf("\n\nTest Passed!");
-}
+if (poly4->Coefficient[0] == 4 &&
+    poly4->Coefficient[1] == 3 &&
+    poly4->Coefficient[2] == 6 &&
+    poly4->Coefficient[3] == 2 &&
+    poly4->Coefficient[4] == 7 &&
+    poly4->Coefficient[5] == 1)
+    {
+      printf("\n\nTest Passed!");
+    } else {
+      printf("\n\nTest Failed!");
+    }
+
 printf("\n=======================================\n");
-
-  printf("\n");
-
 }

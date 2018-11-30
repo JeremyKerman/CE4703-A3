@@ -118,12 +118,10 @@ int get_order(Polynomial* p) {
 // Parameters: Polynomial p  - Polynomial
 //////////////////////////////////////////////////////
 int normalise(Polynomial* p) {
-  printf("order = %d",p->Order);
   double divisor;
   for (int j= (p->Order-1); j>=0; j--) {
     if(p->Coefficient[j]) { //checking if divisor is 0
       divisor = p->Coefficient[j];
-      printf("%.2f",divisor);
       for (int i=0; i<p->Order; i++) {
         p->Coefficient[i] /= divisor;
       }
