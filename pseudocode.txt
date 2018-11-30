@@ -1,4 +1,4 @@
-  Please open with a monospace font for correct formatting.
+  Please display with a monospace font for correct formatting.
   
   +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+
   |                                                           |
@@ -12,20 +12,79 @@
   |                                                           |
   +-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-+
 
+
+
   Poly.c / Poly.h
   Polynomial Implementation using arrays.
 
-    Header
+    Header File (Poly.h)
+      > Defines minimum & maximum functions (macros) for two numbers called MIN(a,b) & MAX(a,b)
+      > Defines Polynomial data type with vars Order and Coefficient
+      > Declares the functions used in corresponding source file:
+        Polynomial* make_polynomial(int n)
+        void del_polynomial(Polynomial* p)
+        Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2)
+        void multiply_polynomial(Polynomial* p, double d)
+        void divide_polynomial(Polynomial* p, double d)
+        int get_order(Polynomial* p)
+        int normalise(Polynomial* p)
+      
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
     
+    Source File (Poly.c) 
+      Polynomial* make_polynomial(int n)
+      Creates a pointer to a Polynomial of n coefficients (all set to 0.0)
+      Params: n >> Number of coefficients
+      Output: Polynomial pointer
+        
+        
+      void del_polynomial(Polynomial* p)
+      Deletes the Polynomial at the pointer's adress & the pointer itself
+      Params: *p >> Polynomial to be deleted
+      Output: None
+        
+        
+      Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2)
+      Adds two Polynomials together.
+      Params: *p1 /*p2 >> Input Polynomials
+      Output: A new Polynomial
+        
+        
+      void multiply_polynomial(Polynomial* p, double d)
+      Multiplies a Polynomial by a scalar value
+      Params: *p >> Input Polynomial
+              d >> Scalar value (double)
+      Output: None
+        
+        
+      void divide_polynomial(Polynomial* p, double d)
+      Divides a Polynomial by a scalar value
+      Params: *p >> Input Polynomial
+              d >> Scalar value (double)
+      Output: None
+        
+        
+      int get_order(Polynomial* p)
+      Returns the higheest order of the Polynomial
+      Params: *p >> Input Polynomial
+      Output: Highest order of the Polynomial (type int)
+        
+        
+      int normalise(Polynomial* p)
+      Normalises a function; Manipulated in such a way where the coefficient of the highest order is 1
+      Params: *p >> Input Polynomial
+      Output: Nothing if successful, Prints "Can't normalise polynomial" if failed
+        
+        
 == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
  
   PolyList.c / PolyList.h
   Polynomial List using Double-Linked Lists (DL Lists).
     
-    Header (PolyList.h) [Poly.h]
+    Header File (PolyList.h) [Poly.h , Poly.c <- Poly.h]
     > Includes [Poly.h] for use in the DL List.
     > Defines DL List Node & List structures alonside error enums.
-    > Defines the functions used in corresponding source file:
+    > Declares the functions used in corresponding source file:
         llist *listCreate()
         void listDelete(llist *list)
         llError insertAfter(Polynomial *p, llist *list)
@@ -35,20 +94,21 @@
         llError gotoPrevNode(llist *list)
         Polynomial *accessPoly(llist *list)
 
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-    Source File (PolyList.c) [PolyList.h <- Poly.h]
+    Source File (PolyList.c) [PolyList.h <- Poly.h , Poly.c <- Poly.h]
       llist *listCreate() 
       Creates an empty DL List (head+tail only)
       Params: None
       Output: DL List pointer (success) / NULL pointer(failure)
         > Create a pointer *list
-        > Allocate appropriate memory space to *list's address.
-        > Check for assignment success; Pointer leads to NULL if failed.
+        > Allocate appropriate memory space to *list's address
+        > Check for assignment success: Pointer leads to NULL if failed (terminates)
         > Allocate head memory space
-        > Check for success; Clear allocation for list & set to NULL if failed.
+        > Check for success: Clear allocation for list & set to NULL if failed (terminates)
         > Assign next & previous node pointers within  head to NULL (tail pointer is NULL)
-        > Assign list's current node to the head node.
-        > Return *list as output.
+        > Assign list's current node to the head node
+        > Return *list as output
         
       void listDelete(llist *list)
       Deletes an entire DL List from memory
@@ -70,7 +130,7 @@
       Params: *p >> Polynomial data inside the new node
               *list >> DL List to add the new Poly node to
       Output: llError debug values ok/noMemory
-        > Create a new node & allocate memory to it: Return noMemory if failed
+        > Create a new node & allocate memory to it: Return noMemory & terminate if failed
         > Assign Poly data to new node
         > Set linking pointers of current & new nodes to correct values
             ie: current <-> new <-> next
@@ -81,10 +141,42 @@
       Deletes the currently selected node in a DL List
       Params: *list >> Input List
       Output: llError debug values ok/illegalNode (can't delete the head of a list)
-        > Check if current node is the head: Return illegalNode if true
+        > Check if current node is the head: Return illegalNode if true (terminates)
         > Relink nodes before and after the current one together
         > Clear the current node
         > Return ok as debug output
       
+      void gotoHead(llist *list)
+      Sets the current node of a DL List to its header
+      Params: *list >> Input DL List
+      Output: None
+        > Set current node as the head node
       
-      
+      llError gotoNextNode(llist *list)
+      Sets the current node in a DL List to the next node in the list
+      Params: *list >> Input DL List
+      Output: llError debug values ok/illegalNode
+        > Check if current node is the tail: return illegalNode if true (terminates)
+        > Set current node as next node
+        > Return ok as debug output
+        
+      llError gotoPrevNode(llist *list)
+      Sets the current node in a DL List to the previous node in the list
+      Params: *list >> Input DL List
+      Output: llError debug values ok/illegalNode
+        > Check if current node is the head: return illegalNode if true (terminates)
+        > Set current node as previous node
+        > Return ok as debug output
+        
+      Polynomial *accessPoly(llist *list)
+      Returns Polynomial data within a DL List node
+      Params: *list >> Input DL List
+      Output: Polynomial struct inside current node in *list, otherwise NULL
+        > Check if current node is head or tail: Return NULL if true (terminates)
+        > Return Polynomial data inside the current node
+
+== == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
+
+
+
+
