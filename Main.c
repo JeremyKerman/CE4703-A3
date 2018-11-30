@@ -5,11 +5,9 @@
 // Date: 22.11.2018
 // Authors:  Dominik Przychodni - 17204658
 //           Bryan McSweeney    - 17223962
-//
-// Useless fucks:
-//          Matas Mockus       - G4Y80Y
-//          Eoghan McGrath     - 1DKL0L
-//          Jeremy Pili        - WEARSFAKEGLASSES
+//           Matas Mockus       - 17203813
+//           Eoghan McGrath
+//           Jeremy Pili        
 ///////////////////////////////////////////////////////
 
 //include system headers
@@ -60,7 +58,12 @@ void print_polynomial(Polynomial *p, int node)
 }
 
 ///////////////////////////////////////////////////////
+// void menu(polylist)
 //
+// menu fucntion which prints the menu and allows the user
+// to make a tSelection
+//
+// parameters: llist polyList - pointer to a linked list of polynomials
 //////////////////////////////////////////////////////
 
 void menu(llist *polyList)
