@@ -5,9 +5,16 @@
 // Date: 22.11.2018
 // Authors:  Dominik Przychodni - 17204658
 //           Bryan McSweeney    - 17223962
+<<<<<<< HEAD
 //           Matas Mockus       - 17203813
 //           Eoghan McGrath
 //           Jeremy Pili        
+=======
+//           Jeremy Pili        -
+//           Matas Mockus       -
+//           Eoghan McGrath     -
+//
+>>>>>>> 042a94bf7a4d7da8f301beaff12f5a8855a4e4c1
 ///////////////////////////////////////////////////////
 
 //include system headers
@@ -33,30 +40,46 @@ int main()
   clrscr();
   //go to the menu
   menu(polyList);
+  
   return EXIT_SUCCESS;
 }
 
 //////////////////////////////////////////////////////
 // function clrscr()
 // Clears the screen
+//
+// paramaters: void
+// returns: void
 //////////////////////////////////////////////////////
 void clrscr()
 {
-  system("clear");
+  system("clear");  
 }
 
+///////////////////////////////////////////////////////
+// void print_polynomial();
+//
+// prints a single polynomial to the screen
+// including its position in the list.
+//
+// parameters: Polynomial *p , int node (position in list) 
+// returns:    void
+//////////////////////////////////////////////////////////////
 void print_polynomial(Polynomial *p, int node)
 {
-
-  fprintf(stdout, "\nPolynomial [%d] =  ",node);
-  fprintf(stdout, "%g", p->Coefficient[0]);
-    for (int i = 1; i < p->Order; i++){
-      if(p->Coefficient[i])
-        fprintf(stdout, " + %gx^%d", p->Coefficient[i], i);
+  // prints polynomials position in the list
+  fprintf(stdout, "\nPolynomial [%d] =  ",node); 
+  fprintf(stdout, "%g", p->Coefficient[0]); // prints the first constant coefficient.
+  
+  for (int i = 1; i < p->Order; i++){  // loops through the polynomial
+    if(p->Coefficient[i])  
+      fprintf(stdout, " + %gx^%d", p->Coefficient[i], i); // prints the coefficient and the power on the variable.
     }
-    fprintf(stdout, "\n");
+  
+  fprintf(stdout, "\n");  //newline
 }
 
+<<<<<<< HEAD
 ///////////////////////////////////////////////////////
 // void menu(polylist)
 //
@@ -65,15 +88,26 @@ void print_polynomial(Polynomial *p, int node)
 //
 // parameters: llist polyList - pointer to a linked list of polynomials
 //////////////////////////////////////////////////////
+=======
+>>>>>>> 042a94bf7a4d7da8f301beaff12f5a8855a4e4c1
 
+//////////////////////////////////////////////////////////////////////////////////
+// void menu();
+//
+// Main menu for the program.
+//
+// parameters: llist *polyList (pointer to the current linked list of polynomials) 
+// returns:    void
+/////////////////////////////////////////////////////////////////////////////////
 void menu(llist *polyList)
 {
-  int option;
+  int option; // variable to store the user's selection
+  
   fprintf(stdout, "\n\tWhat would you like to do?");
   fprintf(stdout, "\n\t[1] Make a new polynomial");
   fprintf(stdout, "\n\t[2] Delete a Polynomial");
   fprintf(stdout, "\n\t[3] Add polynomials");
-  fprintf(stdout, "\n\t[4] Multiply a polynomial by a scalar");
+  fprintf(stdout, "\n\t[4] Multiply a polynomial by a scalar"); // prints menu to stdout
   fprintf(stdout, "\n\t[5] Divide a polynomial by a scalar");
   fprintf(stdout, "\n\t[6] Normalise a polynomial");
   fprintf(stdout, "\n\t[7] Get the order of a polynomial");
@@ -81,8 +115,9 @@ void menu(llist *polyList)
   fprintf(stdout, "\n\t[9] TEST EVERYTHING");
   fprintf(stdout, "\n\t[0] EXIT");
   fprintf(stdout, "\n\n\tSelection: ");
-  scanf("%d", &option);
-  clrscr();
+  
+  scanf("%d", &option); // assign user input to 'option'
+  clrscr(); // clears the screen 
 
   switch(option) {
     case 1: menu_new_polynomial(polyList); break;
