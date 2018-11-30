@@ -46,24 +46,14 @@ void clrscr()
 
 void print_polynomial(Polynomial *p, int node)
 {
-  int order = get_order(p);
+  
 
   fprintf(stdout, "\n\tPolynomial %d =  ",node);
-  if(p->Coefficient[0])
-    fprintf(stdout, "%g + ", p->Coefficient[0]);
-
-  for(int i=1; i<order; i++) {
-    if(p->Coefficient[i])
-      fprintf(stdout, "%gx^%i ", p->Coefficient[i], i);
-  }
-  int even = (int) p->Coefficient[order]%2;
-  
-  if(even != 0) {
-    fprintf(stdout, "+ %gx^%i\n", p->Coefficient[order], order);
-  }
-  else {
-    fprintf(stdout, "\n");
-  }
+  fprintf(stdout, "%g", p->Coefficient[0]);
+    for (int i = 1; i < p->Order; i++){
+      fprintf(stdout, " + %gx^%d", p->Coefficient[i], i);
+    }
+    fprintf(stdout, "\n\n");
 }
 
 void menu(llist *polyList)
@@ -193,11 +183,43 @@ void menu_delete_polynomial(llist *polyList)
 
 void menu_add_polynomials(llist *polyList)
 {
-  //clear the screen
   clrscr();
-
-  /* PRINT THE POLYNOMIALS AVAILABLE*/
-  /*ALLOW THE USER TO CHOSE THE POLYNOMIALS THEY WANT TO ADD*/
+  int add1;
+  int add2;
+  Polynomial *p1;
+  Polynomial *p2;
+  
+  fprintf(stdout, "\n\tYou have chosen to add two polynomials");
+  if (polyList->head->after != NULL){
+    fprintf(stdout, "\n\nPlease choose the first polynomial: \n");
+    print_all(polyList);
+    fprintf(stdout, "\n\tSelection: ");
+    scanf("%d", &add1);
+    fprintf(stdout, "\n\nPlease choose the second polynomial: \n");
+    print_all(polyList);
+    fprintf(stdout, "\n\tSelection: ");
+    scanf("%d", &add2);
+    polyList->current = polyList->head;
+    for(int i = 0; i<add1; i++){
+      polyList->current = polyList->current->after;
+    }
+    p1 = polyList->current->p;
+    polyList->current = polyList->head;
+    for(int i = 0; i<add2; i++){
+      polyList->current = polyList->current->after;
+    }
+    p2 = polyList->current->p;
+    Polynomial *answer = add_polynomials(p1,p2);
+    fprintf(stdout, "\n\n\tANSWER: %g", answer->Coefficient[0]);
+    for (int i = 1; i < ((answer->Order)-1); i++){
+      fprintf(stdout, " + %gx^%d", answer->Coefficient[i], i);
+    }
+    fprintf(stdout, "\n\n");
+  }
+  else {
+    fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO DELETE\n\n");
+  }
+  
 
   //Go back to the menu
   menu(polyList);
