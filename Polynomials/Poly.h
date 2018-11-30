@@ -28,11 +28,8 @@ Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2);
 void multiply_polynomial(Polynomial* p, double d);
 void divide_polynomial(Polynomial* p, double d);
 int get_order(Polynomial* p);
-<<<<<<< HEAD
 int normalise(Polynomial *p);
-=======
-int normalise(Polynomial* p);
->>>>>>> 07a146e7b431736bea9598cbb24fa0f68f5fa057
+
 
 //Declaring Functions in PolyList.c
 
