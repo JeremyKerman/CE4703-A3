@@ -6,8 +6,8 @@
 // Authors:  Dominik Przychodni - 17204658
 //           Bryan McSweeney    - 17223962
 //           Matas Mockus       - 17203813
-//           Jeremy Pili
-//           Eoghan McGrath     -
+//           Jeremy Pili        - 17216052
+//           Eoghan McGrath     - 17220106
 //
 ///////////////////////////////////////////////////////
 
@@ -172,31 +172,32 @@ void menu_new_polynomial(llist *polyList)
 
 }
 
-///////////////////////////////////////////////////////
-// void delete_polynomial();
+/////////////////////////////////////////////////////////////
+// void menu_delete_polynomial(llist *polyList);
 //
-// function call which deletes a given polynomial
+// function to allow the user to delete a chosen polynomial
 //
-// parameters: void
+// parameters: llist *polyList (pointer to current list)
 // returns:    void
 //////////////////////////////////////////////////////////////
-
 void menu_delete_polynomial(llist *polyList)
 {
-  //clear the screen
+  // clear the screen
   clrscr();
+  // variable to store which node to delete
   int toDelete;
   fprintf(stdout, "\n\tYou have chosen to delete a polynomial");
-  if (polyList->head->after != NULL){
+  if (polyList->head->after != NULL){ // checks if list is empty
+    
     fprintf(stdout, "\n\nPlease choose a polynomial to delete: \n");
-    print_all(polyList);
+    print_all(polyList); // prints all polynomials
     fprintf(stdout, "\n\tSelection: ");
-    scanf("%d", &toDelete);
-    polyList->current = polyList->head;
+    scanf("%d", &toDelete);  // assigns user selection to 'toDelete'
+    polyList->current = polyList->head; //goes to start of list
     for(int i = 0; i<toDelete; i++){
-      polyList->current = polyList->current->after;
+      polyList->current = polyList->current->after;  //loops until 'toDelete' is reached
     }
-    deleteCurrent(polyList);
+    deleteCurrent(polyList); //deletes the selected node
   }
   else {
     fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO DELETE\n\n");
@@ -208,66 +209,74 @@ void menu_delete_polynomial(llist *polyList)
 
 }
 
-///////////////////////////////////////////////////////
-// void add_polynomials();
+//////////////////////////////////////////////////////////////////
+// void add_polynomials(llist *polyList);
 //
 // function call which adds two polynomials and stores the
 // sum as a new polynomial
 //
-// parameters: void
+// parameters: llist *polyList (pointer to the list od polynomials)
 // returns:    void
-//////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 
 void menu_add_polynomials(llist *polyList)
 {
+  // clears screen
   clrscr();
-  int add1;
-  int add2;
-  Polynomial *p1;
-  Polynomial *p2;
+  
+  int add1; // number in list of first polynomial
+  int add2; // number in list of second ""
+  Polynomial *p1; // pointer for 1st polynomial
+  Polynomial *p2; // pointer for second polynomial
 
   fprintf(stdout, "\n\tYou have chosen to add two polynomials");
+  // checks if list is empty
   if (polyList->head->after != NULL){
+    
     fprintf(stdout, "\n\nPlease choose the first polynomial: \n");
-    print_all(polyList);
+    print_all(polyList); //prints all polynomials
     fprintf(stdout, "\n\tSelection: ");
-    scanf("%d", &add1);
+    scanf("%d", &add1); // gets number of first poly from user
+    
     fprintf(stdout, "\n\nPlease choose the second polynomial: \n");
     print_all(polyList);
     fprintf(stdout, "\n\tSelection: ");
-    scanf("%d", &add2);
-    polyList->current = polyList->head;
+    scanf("%d", &add2); // gets number of 2nd poly from user
+    
+    polyList->current = polyList->head;  // goes to head of list
     for(int i = 0; i<add1; i++){
-      polyList->current = polyList->current->after;
+      polyList->current = polyList->current->after;  // loops through list until 1st poly is reached
     }
-    p1 = polyList->current->p;
-    polyList->current = polyList->head;
+    p1 = polyList->current->p; // stores pointer to first poly as 'p1'
+    
+    polyList->current = polyList->head; // goes back to head
     for(int i = 0; i<add2; i++){
-      polyList->current = polyList->current->after;
+      polyList->current = polyList->current->after;  //loops to find 2nd poly
     }
-    p2 = polyList->current->p;
-    Polynomial *answer = add_polynomials(p1,p2);
-    fprintf(stdout, "\n\n\tANSWER: %g", answer->Coefficient[0]);
+    p2 = polyList->current->p; // stores pointer to 2nd poly as 'p2'
+    
+    Polynomial *answer = add_polynomials(p1,p2);  // calls function to return a pointer to the sum of p1 and p2
+    fprintf(stdout, "\n\n\tANSWER: %g", answer->Coefficient[0]); // prints first coefficient of the sum
     for (int i = 1; i < ((answer->Order)-1); i++){
-      fprintf(stdout, " + %gx^%d", answer->Coefficient[i], i);
+      fprintf(stdout, " + %gx^%d", answer->Coefficient[i], i); // prints the other coefficients
     }
     fprintf(stdout, "\n\n");
-
-    fprintf(stdout, "Would you like to add this new polynomial to the list? (Y/N): ");
-    char store;
-    scanf(" %c", &store);
-    if ((store == 'y') | (store == 'Y')){
-      while(polyList->current->after != NULL){
-	polyList->current = polyList->current->after;
+    // asks user if they want to store the sum polynomial
+    fprintf(stdout, "Would you like to add this new polynomial to the list? (Y/N): "); 
+    char store; // variable to store the users choice
+    scanf(" %c", &store); // gets choice
+    if ((store == 'y') | (store == 'Y')){ // stores polynomial if user chose 'y'
+      while(polyList->current->after != NULL){ 
+	polyList->current = polyList->current->after; //moves to end of list
       }
-      if (insertAfter(answer, polyList) == ok)
-	printf("\nadded polynomial to list\n");
+      if (insertAfter(answer, polyList) == ok) // tries to insert the new polynomial
+	printf("\nadded polynomial to list\n");  //success
       else
-	printf("\nInsuffient ressources, operation cancelled\n");
+	printf("\nInsuffient ressources, operation cancelled\n");  //failure
     }
   }
   else {
-    fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO ADD\n\n");
+    fprintf(stdout, "\n\n\tNO POLYNOMIALS AVAILABLE TO ADD\n\n");  // prints if list is empty
   }
 
 
