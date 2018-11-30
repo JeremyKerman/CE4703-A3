@@ -36,44 +36,51 @@
       Creates a pointer to a Polynomial of n coefficients (all set to 0.0)
       Params: n >> Number of coefficients
       Output: Polynomial pointer
+        > Create & assign memory to a new Polynomial pointer
+        > Terminates Program if function fails
 
 
       void del_polynomial(Polynomial* p)
       Deletes the Polynomial at the pointer's adress & the pointer itself
       Params: *p >> Polynomial to be deleted
       Output: None
-
+        > Deallocate memory at pointer location
 
       Polynomial* add_polynomials(Polynomial* p1, Polynomial* p2)
       Adds two Polynomials together.
       Params: *p1 /*p2 >> Input Polynomials
       Output: A new Polynomial
-
+        > Find highest order of Polynomials and set a temp variable to that
+        > Add all corresponding order's coefficients & return result as a new Polynomial
 
       void multiply_polynomial(Polynomial* p, double d)
       Multiplies a Polynomial by a scalar value
       Params: *p >> Input Polynomial
               d >> Scalar value (double)
       Output: None
-
+        > Find highest order of Polynomials and set a temp variable to that
+        > Multiply all corresponding order's coefficients & return result as a new Polynomial
 
       void divide_polynomial(Polynomial* p, double d)
       Divides a Polynomial by a scalar value
       Params: *p >> Input Polynomial
               d >> Scalar value (double)
       Output: None
-
+        > Find highest order of Polynomials and set a temp variable to that
+        > Divide all corresponding order's coefficients & return result as a new Polynomial
 
       int get_order(Polynomial* p)
       Returns the higheest order of the Polynomial
       Params: *p >> Input Polynomial
       Output: Highest order of the Polynomial (type int)
-
-
+        > Count number of coefficients & return result
+        
       int normalise(Polynomial* p)
       Normalises a function; Manipulated in such a way where the coefficient of the highest order is 1
       Params: *p >> Input Polynomial
       Output: Nothing if successful, Prints "Can't normalise polynomial" if failed
+        > Obtain & store highest order's coefficient
+        > Divide all coefficients by the obtained number: Print failure message if unsuccessful
 
 
 == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
