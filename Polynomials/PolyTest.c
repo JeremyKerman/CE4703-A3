@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "PolyList.h"
 #include "Poly.h"
+#include "../Main.h"
 
 void poly_test()//     <----- declared in Main.h
 {
@@ -158,5 +159,5 @@ if (poly4->Coefficient[0] == 4 &&
       printf("\n\nTest Failed!");
     }
 
-printf("\n=======================================\n");
+printf("\n=======================================\n\n");
 }

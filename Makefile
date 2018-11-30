@@ -23,7 +23,7 @@ Poly.o: Poly.c Poly.h
 PolyList.o: PolyList.c PolyList.h
 	@gcc -Wall -ggdb -c $<
 
-PolyTest.o: PolyTest.c
+PolyTest.o: PolyTest.c PolyList.h Poly.h Main.h
 		@gcc -Wall -c -ggdb $<
 
 #clean command "-f" to ignore messages when files don't exist
