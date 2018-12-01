@@ -2,12 +2,12 @@
 // Main file for group assignment 3
 // Polynomial function manipulator with user input
 //
-// Date: 22.11.2018
+// Last Modified: Jeremy Pili, 30.11.2018
 // Authors:  Dominik Przychodni - 17204658
 //           Bryan McSweeney    - 17223962
-//           Matas Mockus       - 17203813
 //           Jeremy Pili        - 17216052
 //           Eoghan McGrath     - 17220106
+//           Matas Mockus       - 17203813
 //
 ///////////////////////////////////////////////////////
 
@@ -32,6 +32,15 @@ int main()
 
   //clear the screen from compilation messages
   clrscr();
+  
+  fprintf(stdout, "\n\tCE4703 - Assignment 03: Polynomial Manipulator\n"
+                  "\n\tCode By:"
+                  "\n\tDominik Przychodni - 17204658"
+                  "\n\tBryan McSweeney    - 17223962"
+                  "\n\tJeremy Pili        - 17216052"
+                  "\n\tEoghan McGrath     - 17220106"
+                  "\n\tMatas Mockus       - 17203813\n");
+
   //go to the menu
   menu(polyList);
 

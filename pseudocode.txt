@@ -183,3 +183,153 @@
         > Return Polynomial data inside the current node
 
 == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
+
+  Main.c / Main.h
+  User Interface & Main Function
+    
+    Header File (Main.h) [Poly.h , PolyList.h <- Poly.c <- Poly.h]
+    > Defines the functions used in Main.c:
+      void clrscr()
+      void print_polynomial(Polynomial *p, int i)
+      void menu(llist *polyList)
+      void menu_new_polynomial(llist *polyList)
+      void menu_delete_polynomial(llist *polyList)
+      void menu_add_polynomials(llist *polyList)
+      void menu_multiply_polynomial(llist *polyList)
+      void menu_divide_polynomial(llist *polyList)
+      void menu_normalise_polynomial(llist *polyList)
+      void menu_get_order(llist *polyList)
+      void menu_print(llist *polyList)
+      void print_all(llist *polyList)
+      void menu_exit(llist *polyList)
+      void poly_test() [PolyTest.c]
+      
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+  
+    Source File (Main.c) [Main.h <- Poly.h , PolyList.h <- Poly.c <- Poly.h]
+      void clrscr()
+      Clears the terminal window
+      Input: None
+      Output: None
+      
+      void print_polynomial(Polynomial *p, int i)
+      Prints a Polynomial to the terminal
+      Input: *p >> Input Polynomial , i >> List position
+      Output: None
+      
+      void menu(llist *polyList)
+      Menu Display & Input Detection
+      Input: *polyList >> List of stored Polynomials
+      Output: None
+        > Print Menu
+        > Listen for user input
+        > Call the corresponding function
+        > Do nothing if invalid input is entered
+      
+      void menu_new_polynomial(llist *polyList)
+      Menu option to create a new Polynomial
+      Input: *polyList >> List of stored Polynomials
+      Output: None
+        > Inform user of choice
+        > Prompt user to enter parameters of the Polynomial (Order & Coefficients)
+        > Record each parameter & create a new Polynomial
+        > Add new Polynomial to the list
+        > Return to Menu
+      
+      void menu_delete_polynomial(llist *polyList)
+      Menu option to delete a Polynomial
+      Input: *polyList >> List of stored Polynomials
+      Output: None
+        > Inform user of choice
+        > Check if any Polynomials exist: Print Error if true (back to Menu)
+        > Prompt user to choose a Polynomial to delete
+        > Record input & delete corresponding Polynomial
+        > Return to Menu
+      
+      void menu_add_polynomials(llist *polyList)
+      Menu option to add two Polynomials
+      Input: *polyList >> List of stored Polynomials
+      Output: None
+        > Inform user of choice
+        > Check if any Polynomials exist: Print Error if true (back to Menu)
+        > Prompt user to choose two Polynomials to add
+        > Record choices & add Polynomials, creating a new Polynomial
+        > Display answer to user
+        > Prompt user if they wish to add the new Polynomial to the list
+        > Add Polynomial to list or discard based on user response
+        > Check for available memory when adding new Polynomial: Print error if memory insufficient (back to Menu)
+        > Return to Menu
+        
+      void menu_multiply_polynomial(llist *polyList)
+      Menu option to multiply a Polynomial
+      Input: *polyList >> List of stored Polynomials
+      Output: None
+        > Inform user of choice
+        > Check if any Polynomials exist: Print Error if true (back to Menu)
+        > Prompt user to choose a Polynomial and the scalar to multiply with
+        > Record inputs & multiply Polynomial
+        > Display answer to user
+        > Return to Menu
+        
+      void menu_divide_polynomial(llist *polyList)
+      Menu option to divide a Polynomial
+      Input: *polyList >> List of stored Polynomials
+      Output: None
+        > Inform user of choice
+        > Check if any Polynomials exist: Print Error if true (back to Menu)
+        > Prompt user to choose a Polynomial and the scalar to divide by
+        > Record inputs & divide Polynomial
+        > Display answer to user
+        > Return to Menu
+        
+      void menu_normalise_polynomial(llist *polyList)
+      Menu option to normalise a Polynomial
+      Input: *polyList >> List of stored Polynomials
+      Output: None
+        > Inform user of choice
+        > Check if any Polynomials exist: Print Error if true (back to Menu)
+        > Prompt user to choose a Polynomial to normalise
+        > Record input & normalise chosen Polynomial : Print Error if unsuccessful (back to Menu)
+        > Display answer to user
+        > Return to Menu
+        
+      void menu_get_order(llist *polyList)
+      Menu option to get the order of a Polynomial
+      Input: *polyList >> List of stored Polynomials
+      Output: None
+        > Inform user of choice
+        > Check if any Polynomials exist: Print Error if true (back to Menu)
+        > Prompt user to choose a Polynomial
+        > Record input & display order of chosen Polynomial
+        > Return to Menu
+        
+      void menu_print(llist *polyList)
+      Menu option to print all Polynomials stored
+      Input: *polyList >> List of stored Polynomials
+      Output: None
+        > Print all Polynomials in the list
+        > Return to Menu
+      
+      void print_all(llist *polyList)
+      Print all Polynomials stored
+      Input: *polyList >> List of stored Polynomials
+      Output: None
+        > Check if polyList exists : Print Error if false (terminates)
+        > Print all Polynomial nodes in the DL List (head -> tail)
+        > Reset node selection to first node
+      
+      void menu_exit(llist *polyList)
+      Cleans up memory & Exits Program
+      Input: *polyList >> The List of Polynomial(s)
+      Output: None (Program Terminated)
+        > Delete *polyList
+        > Print Exit Message
+        > Exit Program
+      
+== == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
+
+  PolyTest.c []
+  Test Case file for Polynomial Functions (full definition of void poly_test() in 'Main.h')
+  > Test all functions of Poly.c sequentially
+  > Check if function output is correct after each execution
+  
